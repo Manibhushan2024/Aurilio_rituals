@@ -1,0 +1,87 @@
+<section class="trust-bar" id="TrustBar" aria-label="Why choose Aurelia Rituals">
+  <div class="container trust-bar__inner">
+    {% for block in section.blocks %}
+      <div class="trust-bar__item animate-fade-up" {{ block.shopify_attributes }} style="animation-delay: {{ forloop.index | times: 100 }}ms;">
+        <div class="trust-bar__icon" aria-hidden="true">
+          {% case block.settings.icon %}
+            {% when 'video' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+            {% when 'artisan' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            {% when 'leaf' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.22A3.91 3.91 0 0 0 5 21L3.44 19.44A3.91 3.91 0 0 0 2 17.5C2 15 5 8 17 8z"/><path d="M17 8c-1.56 4.73-3.85 8.47-8 11"/></svg>
+            {% when 'lotus' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+            {% when 'truck' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            {% when 'star' %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor" stroke="none"/></svg>
+            {% else %}
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          {% endcase %}
+        </div>
+        <div class="trust-bar__text">
+          <strong class="trust-bar__label">{{ block.settings.label }}</strong>
+          {% if block.settings.sublabel != blank %}
+            <span class="trust-bar__sublabel">{{ block.settings.sublabel }}</span>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "tag": "section",
+  "class": "section-trust-bar",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "video", "label": "Video / Tutorial" },
+            { "value": "artisan", "label": "Heart / Artisan" },
+            { "value": "leaf", "label": "Leaf / Natural" },
+            { "value": "lotus", "label": "Lotus / Mindful" },
+            { "value": "truck", "label": "Truck / Shipping" },
+            { "value": "star", "label": "Star / Quality" }
+          ],
+          "default": "star"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Trust Point"
+        },
+        {
+          "type": "text",
+          "id": "sublabel",
+          "label": "Sub-label (optional)",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Bar",
+      "blocks": [
+        { "type": "trust_item", "settings": { "icon": "video", "label": "Video Tutorials Included", "sublabel": "Step-by-step guidance" } },
+        { "type": "trust_item", "settings": { "icon": "artisan", "label": "Empowering Artisans", "sublabel": "100+ rural women supported" } },
+        { "type": "trust_item", "settings": { "icon": "leaf", "label": "Natural Materials", "sublabel": "Pure cotton & organic dyes" } },
+        { "type": "trust_item", "settings": { "icon": "lotus", "label": "Mindful Crafting", "sublabel": "A ritual for your soul" } },
+        { "type": "trust_item", "settings": { "icon": "truck", "label": "Free Shipping", "sublabel": "On orders above ₹1499" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

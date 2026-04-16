@@ -1,0 +1,29 @@
+{
+  "current": {
+    "color_primary": "#C9A96E",
+    "color_secondary": "#C47A55",
+    "color_bg": "#FAF6F0",
+    "color_text": "#2C2C2C",
+    "color_accent": "#8E8E8E",
+    "color_surface": "#FFFFFF",
+    "font_heading": "cormorant_garamond_n4",
+    "font_body": "inter_n4",
+    "font_size_base": 16,
+    "logo_width": 160,
+    "announcement_text": "✨ Free Shipping on Orders Above ₹1499 | Empowering Rural Artisans | Video Tutorials Included",
+    "announcement_bg": "#2C2C2C",
+    "announcement_text_color": "#C9A96E",
+    "sticky_header": true,
+    "footer_tagline": "Stitch Your Calm. Wear the Story.",
+    "footer_email": "hello@aureliarituals.com",
+    "footer_whatsapp": "+91 98765 43210",
+    "social_instagram": "@aureliarituals",
+    "social_instagram_url": "https://instagram.com/aureliarituals",
+    "social_pinterest_url": "https://pinterest.com/aureliarituals",
+    "social_youtube_url": "https://youtube.com/@aureliarituals",
+    "cart_type": "drawer",
+    "show_artisan_note": true,
+    "artisan_note_text": "With every purchase, you support a skilled rural artisan and her family."
+  },
+  "presets": {}
+}

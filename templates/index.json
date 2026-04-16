@@ -1,0 +1,116 @@
+{
+  "sections": {
+    "hero-banner": {
+      "type": "hero-banner",
+      "settings": {
+        "eyebrow": "Premium Sujni Heritage",
+        "heading": "Stitch Your Calm.",
+        "subheading": "Mindful Sujni embroidery kits & heritage decor, crafted for modern spaces.",
+        "heading_color": "#FAF6F0",
+        "subheading_color": "#E0D5C5",
+        "overlay_color": "#1A1209",
+        "overlay_opacity": 30,
+        "content_position": "left",
+        "btn_primary_label": "Explore the Collections",
+        "btn_primary_url": "/collections",
+        "btn_secondary_label": "Our Story",
+        "btn_secondary_url": "/pages/our-story",
+        "min_height": 700
+      }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "block_order": ["trust1","trust2","trust3","trust4","trust5"],
+      "blocks": {
+        "trust1": { "type": "trust_item", "settings": { "icon": "video",   "label": "Video Tutorials Included",  "sublabel": "Step-by-step guidance"     } },
+        "trust2": { "type": "trust_item", "settings": { "icon": "artisan", "label": "Empowering Artisans",       "sublabel": "100+ rural women supported" } },
+        "trust3": { "type": "trust_item", "settings": { "icon": "leaf",    "label": "Natural Materials",         "sublabel": "Pure cotton & organic dyes" } },
+        "trust4": { "type": "trust_item", "settings": { "icon": "lotus",   "label": "Mindful Crafting",          "sublabel": "A ritual for your soul"     } },
+        "trust5": { "type": "trust_item", "settings": { "icon": "truck",   "label": "Free Shipping",             "sublabel": "On orders above ₹1499"      } }
+      }
+    },
+    "collection-cards": {
+      "type": "collection-cards",
+      "settings": {
+        "eyebrow": "Explore",
+        "heading": "Shop by Collection",
+        "subheading": "From ready-made heritage decor to DIY ritual kits — find your perfect way to stitch."
+      },
+      "block_order": ["col1","col2","col3","col4"],
+      "blocks": {
+        "col1": { "type": "collection_card", "settings": { "title": "The Heritage Collection", "description": "Finished Sujni cushions, wall hangings, quilts & totes for modern homes.", "cta_label": "Shop Decor",      "link": "/collections/heritage-collection", "tag": "Bestseller"    } },
+        "col2": { "type": "collection_card", "settings": { "title": "The Ritual Kits",         "description": "Beginner-friendly DIY Sujni embroidery kits. Everything included.",      "cta_label": "Start Ritual",    "link": "/collections/ritual-kits",         "tag": ""              } },
+        "col3": { "type": "collection_card", "settings": { "title": "Bundles & Gifting",        "description": "Curated gift sets for weddings, birthdays, and team appreciation.",      "cta_label": "Gift Mindfully",  "link": "/collections/bundles-gifting",     "tag": "Perfect Gift"  } },
+        "col4": { "type": "collection_card", "settings": { "title": "Corporate & Workshops",    "description": "Sujni wellness sessions and branded gifting for teams and events.",       "cta_label": "Book a Session",  "link": "/pages/corporate-workshops",       "tag": ""              } }
+      }
+    },
+    "story-preview": {
+      "type": "story-preview",
+      "settings": {
+        "eyebrow": "Real Women. Real Art.",
+        "heading": "Heritage Woven into Every Thread.",
+        "body_text": "<p>Aurelia Rituals was born from a deep reverence for the ancient Sujni embroidery tradition of Bihar. Each piece — whether a finished cushion or a DIY kit — carries within it the pride, skill, and artistry of the women who make them possible.</p><p>We believe in slow making, intentional living, and the quiet power of creation. Our ritual kits invite you to pause, breathe, and stitch your own story.</p>",
+        "show_stats": true,
+        "stat1_number": "200+",
+        "stat1_label": "Artisans Supported",
+        "stat2_number": "5000+",
+        "stat2_label": "Rituals Started",
+        "stat3_number": "100%",
+        "stat3_label": "Handcrafted",
+        "cta_label": "Read Our Story",
+        "cta_url": "/pages/our-story"
+      }
+    },
+    "gifting-impact": {
+      "type": "gifting-impact",
+      "settings": {
+        "eyebrow": "Gift Mindfully",
+        "heading": "Gifts That Stitch Hope",
+        "subheading": "Every Aurelia Rituals gift carries a story — of craft, connection, and conscious living.",
+        "cta_label": "Shop All Gifts",
+        "cta_url": "/collections/bundles-gifting"
+      },
+      "block_order": ["gift1","gift2","gift3","gift4"],
+      "blocks": {
+        "gift1": { "type": "gift_card", "settings": { "icon": "wedding", "title": "Bridal & Wedding",    "description": "Premium Sujni ritual boxes for brides, bridesmaids & pre-wedding rituals.", "link_label": "Explore", "link": "/collections/bridesmaid-wedding"   } },
+        "gift2": { "type": "gift_card", "settings": { "icon": "gift",    "title": "Birthday & Milestones","description": "A handcrafted gift that turns any occasion into a cherished memory.",        "link_label": "Explore", "link": "/collections/bundles-gifting"       } },
+        "gift3": { "type": "gift_card", "settings": { "icon": "team",    "title": "Corporate Gifting",   "description": "Branded wellness ritual boxes for teams, clients & high-value events.",      "link_label": "Explore", "link": "/pages/corporate-workshops"         } },
+        "gift4": { "type": "gift_card", "settings": { "icon": "mom",     "title": "Mom & Family",        "description": "Stitch together — bonding kits for families who love creating.",              "link_label": "Explore", "link": "/collections/mom-me-set"            } }
+      }
+    },
+    "best-sellers": {
+      "type": "best-sellers",
+      "settings": {
+        "eyebrow": "Most Loved",
+        "heading": "Best Sellers",
+        "subheading": "Our community's all-time favourites. Stitched with love, delivered with care.",
+        "products_limit": 4,
+        "columns_desktop": "4",
+        "show_view_all": true,
+        "view_all_label": "View All Best Sellers",
+        "view_all_url": "/collections/best-sellers"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "eyebrow": "Stay in the Loop",
+        "heading": "Join the Ritual",
+        "subheading": "Slow stories, new launches, and creative ritual inspiration delivered to your inbox.",
+        "placeholder": "your@email.com",
+        "btn_label": "Join the Ritual",
+        "success_message": "Welcome to the ritual! Check your inbox for a little surprise.",
+        "privacy_text": "No spam. Unsubscribe anytime. We respect your inbox."
+      }
+    }
+  },
+  "order": [
+    "hero-banner",
+    "trust-bar",
+    "collection-cards",
+    "story-preview",
+    "gifting-impact",
+    "best-sellers",
+    "newsletter"
+  ]
+}

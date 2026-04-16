@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Page Not Found – {{ shop.name }}</title>
+  {{ content_for_header }}
+  {{ 'main.css' | asset_url | stylesheet_tag }}
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="template-404">
+  {% render 'header-content' %}
+  <main id="MainContent" class="main-content">
+    <section class="error-404 section">
+      <div class="container error-404__inner animate-fade-up">
+        <p class="error-404__code">404</p>
+        <h1 class="error-404__title">Thread Lost.</h1>
+        <p class="error-404__desc">The page you're looking for seems to have unravelled. Let's stitch you back on track.</p>
+        <div class="error-404__btns">
+          <a href="/" class="btn btn--primary" id="Error404Home">Back to Home</a>
+          <a href="/collections" class="btn btn--outline" id="Error404Shop">Browse Collections</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  {% render 'footer-content' %}
+  <script src="{{ 'main.js' | asset_url }}" defer></script>
+</body>
+</html>

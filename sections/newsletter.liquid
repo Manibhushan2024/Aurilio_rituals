@@ -1,0 +1,142 @@
+<section class="newsletter-section section" id="NewsletterSection" aria-label="Newsletter signup">
+  <div class="newsletter-section__bg">
+    {% if section.settings.bg_image %}
+      <img
+        src="{{ section.settings.bg_image | image_url: width: 1920 }}"
+        alt=""
+        aria-hidden="true"
+        class="newsletter-section__bg-img"
+        loading="lazy"
+        width="1920"
+        height="600"
+      >
+    {% else %}
+      <img
+        src="{{ 'newsletter-bg.png' | asset_url }}"
+        alt=""
+        aria-hidden="true"
+        class="newsletter-section__bg-img"
+        loading="lazy"
+        width="1920"
+        height="600"
+      >
+    {% endif %}
+    <div class="newsletter-section__overlay"></div>
+  </div>
+
+  <div class="container newsletter-section__inner">
+    <div class="newsletter-section__content animate-fade-up">
+
+      {% if section.settings.eyebrow != blank %}
+        <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      <h2 class="newsletter-section__heading">{{ section.settings.heading }}</h2>
+
+      {% if section.settings.subheading != blank %}
+        <p class="newsletter-section__subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+
+      {% form 'customer', id: 'NewsletterForm', class: 'newsletter-form' %}
+        {% if form.errors %}
+          <div class="newsletter-form__error" role="alert">
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
+        {% if form.posted_successfully? %}
+          <div class="newsletter-form__success" role="status">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            {{ section.settings.success_message | default: "Welcome to the ritual! Check your inbox." }}
+          </div>
+        {% else %}
+          <div class="newsletter-form__group">
+            <label for="NewsletterEmail" class="visually-hidden">Email address</label>
+            <input
+              type="email"
+              id="NewsletterEmail"
+              name="contact[email]"
+              class="newsletter-form__input"
+              placeholder="{{ section.settings.placeholder | default: 'your@email.com' }}"
+              required
+              autocomplete="email"
+            >
+            <button type="submit" class="newsletter-form__btn btn btn--primary" id="NewsletterSubmit">
+              {{ section.settings.btn_label | default: 'Join the Ritual' }}
+            </button>
+          </div>
+          <input type="hidden" name="contact[tags]" value="newsletter">
+        {% endif %}
+      {% endform %}
+
+      {% if section.settings.privacy_text != blank %}
+        <p class="newsletter-form__privacy">{{ section.settings.privacy_text }}</p>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "section-newsletter",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Stay in the Loop"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the Ritual"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Slow stories, new launches, and creative ritual inspiration delivered to your inbox."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input Placeholder",
+      "default": "your@email.com"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Join the Ritual"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success Message",
+      "default": "Welcome to the ritual! Check your inbox for a little surprise."
+    },
+    {
+      "type": "text",
+      "id": "privacy_text",
+      "label": "Privacy Note",
+      "default": "No spam. Unsubscribe anytime. We respect your inbox."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "eyebrow": "Stay in the Loop",
+      "heading": "Join the Ritual",
+      "subheading": "Slow stories, new launches, and creative ritual inspiration delivered to your inbox."
+    }
+  ]
+}
+{% endschema %}

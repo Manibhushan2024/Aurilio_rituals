@@ -1,0 +1,68 @@
+{
+  "general": {
+    "password_page_description": "We will be open very soon!",
+    "meta_description": "Aurelia Rituals — Premium Sujni embroidery DIY kits and heritage home decor. Mindfully crafted by skilled Indian artisans for modern spaces.",
+    "404": {
+      "page_not_found": "Thread Lost.",
+      "cta": "Go back to home"
+    }
+  },
+  "product": {
+    "add_to_cart": "Add to Ritual Bag",
+    "sold_out": "Sold Out",
+    "unavailable": "Unavailable",
+    "view": "View",
+    "quick_add": "Quick Add",
+    "view_options": "View Options",
+    "artisan_note": "With every purchase, you support a skilled rural artisan.",
+    "share": "Share",
+    "description_tab": "About This Ritual",
+    "inside_box_tab": "What's Inside the Box",
+    "shipping_tab": "Shipping & Returns"
+  },
+  "cart": {
+    "title": "Your Ritual Bag",
+    "empty": "Your bag is empty",
+    "empty_desc": "Add a ritual to begin your journey.",
+    "empty_cta": "Start Shopping",
+    "subtotal": "Subtotal",
+    "checkout": "Proceed to Checkout",
+    "view_cart": "View Cart",
+    "taxes_note": "Taxes and shipping calculated at checkout",
+    "remove": "Remove",
+    "update": "Update"
+  },
+  "search": {
+    "placeholder": "Search for kits, decor, gifts...",
+    "submit": "Search",
+    "no_results": "No results for",
+    "results": "results for"
+  },
+  "newsletter": {
+    "success": "Welcome to the ritual! Check your inbox.",
+    "error": "Something went wrong. Please try again."
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close": "Close",
+    "open_menu": "Open navigation menu",
+    "open_cart": "Open cart",
+    "open_search": "Open search",
+    "previous": "Previous",
+    "next": "Next",
+    "increase_quantity": "Increase quantity",
+    "decrease_quantity": "Decrease quantity",
+    "playing": "Playing",
+    "paused": "Paused"
+  },
+  "collection": {
+    "sort_by_label": "Sort by",
+    "sort_button": "Sort and filter",
+    "products_with_count": {
+      "one": "{{ count }} product",
+      "other": "{{ count }} products"
+    },
+    "empty": "No products found",
+    "use_fewer_filters": "Use fewer filters or remove all"
+  }
+}

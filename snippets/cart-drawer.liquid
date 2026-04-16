@@ -1,0 +1,76 @@
+<!-- Cart Drawer -->
+<div class="cart-drawer" id="CartDrawer" aria-modal="true" role="dialog" aria-label="Shopping cart" aria-hidden="true">
+
+  <div class="cart-drawer__header">
+    <h2 class="cart-drawer__title">Your Ritual Bag</h2>
+    <button class="cart-drawer__close" id="CartDrawerClose" aria-label="Close cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="cart-drawer__body" id="CartDrawerBody">
+    {% if cart.item_count == 0 %}
+      <div class="cart-drawer__empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <p class="cart-drawer__empty-title">Your bag is empty</p>
+        <p class="cart-drawer__empty-desc">Add a ritual to begin your journey.</p>
+        <a href="/collections" class="btn btn--primary" id="CartEmptyShop">Start Shopping</a>
+      </div>
+    {% else %}
+      <ul class="cart-drawer__items" role="list">
+        {% for item in cart.items %}
+          <li class="cart-drawer__item" data-variant-id="{{ item.variant_id }}">
+            <a href="{{ item.url }}" class="cart-drawer__item-img-link">
+              {% if item.image %}
+                <img
+                  src="{{ item.image | image_url: width: 120 }}"
+                  alt="{{ item.title }}"
+                  class="cart-drawer__item-img"
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                >
+              {% endif %}
+            </a>
+            <div class="cart-drawer__item-info">
+              <a href="{{ item.url }}" class="cart-drawer__item-title">{{ item.product.title }}</a>
+              {% unless item.variant.title == 'Default Title' %}
+                <p class="cart-drawer__item-variant">{{ item.variant.title }}</p>
+              {% endunless %}
+              <div class="cart-drawer__item-bottom">
+                <div class="cart-drawer__qty">
+                  <button class="cart-drawer__qty-btn" data-action="decrease" data-key="{{ item.key }}" aria-label="Decrease quantity">−</button>
+                  <span class="cart-drawer__qty-num">{{ item.quantity }}</span>
+                  <button class="cart-drawer__qty-btn" data-action="increase" data-key="{{ item.key }}" aria-label="Increase quantity">+</button>
+                </div>
+                <span class="cart-drawer__item-price">{{ item.final_line_price | money }}</span>
+              </div>
+            </div>
+            <button class="cart-drawer__remove" data-key="{{ item.key }}" aria-label="Remove {{ item.title }}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Artisan note -->
+      <div class="cart-drawer__artisan-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A96E" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Your purchase supports skilled rural artisans.
+      </div>
+    {% endif %}
+  </div>
+
+  {% if cart.item_count > 0 %}
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <span id="CartSubtotal">{{ cart.total_price | money }}</span>
+      </div>
+      <p class="cart-drawer__taxes-note">Taxes and shipping calculated at checkout</p>
+      <a href="{{ routes.checkout_url }}" class="btn btn--primary cart-drawer__checkout" id="CartCheckout">Proceed to Checkout</a>
+      <a href="{{ routes.cart_url }}" class="cart-drawer__view-cart">View Cart</a>
+    </div>
+  {% endif %}
+
+</div>

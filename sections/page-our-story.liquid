@@ -1,0 +1,154 @@
+<!-- Our Story Page -->
+<div class="page-our-story">
+
+  <!-- Page Hero -->
+  <section class="page-hero section--cream" id="OurStoryHero" aria-label="Our story hero">
+    <div class="container page-hero__inner">
+      <div class="page-hero__media">
+        {% if section.settings.hero_image %}
+          <img src="{{ section.settings.hero_image | image_url: width: 1440 }}" alt="{{ section.settings.image_alt | default: 'Our story' }}" class="page-hero__img" loading="eager" width="1440" height="600">
+        {% else %}
+          <img src="{{ 'about-hero.png' | asset_url }}" alt="Our story" class="page-hero__img" loading="eager" width="1440" height="600">
+        {% endif %}
+        <div class="page-hero__overlay"></div>
+      </div>
+      <div class="page-hero__content animate-fade-up">
+        <p class="section-eyebrow">{{ section.settings.eyebrow | default: 'Who We Are' }}</p>
+        <h1 class="page-hero__title">{{ section.settings.heading | default: 'Our Story: Real People, Real Art.' }}</h1>
+        <p class="page-hero__subtitle">{{ section.settings.subheading | default: 'Where a 400-year-old tradition meets the modern ritual of mindful making.' }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Story -->
+  <section class="our-story-section section" id="FounderStory">
+    <div class="container our-story-section__grid">
+      <div class="our-story-section__text animate-fade-up">
+        <p class="section-eyebrow">The Origin Ritual</p>
+        <h2 class="section-heading">{{ section.settings.founder_heading | default: 'A Vision Born from Threads' }}</h2>
+        <div class="rte">{{ section.settings.founder_body | default: '<p>Aurelia Rituals was founded with a single, powerful belief: that the act of creation is one of the most therapeutic things a human being can do. We saw ancient Sujni embroidery — traditionally stitched by the women of Bihar — and asked: what if this became a modern ritual of self-care?</p><p>We set out to build a brand that would honour the artisans not as objects of charity, but as masters of their craft. Skilled, proud, and irreplaceable.</p>' }}</div>
+      </div>
+      <div class="our-story-section__media animate-fade-up" style="animation-delay:150ms;">
+        {% if section.settings.founder_image %}
+          <img src="{{ section.settings.founder_image | image_url: width: 700 }}" alt="{{ section.settings.founder_image_alt | default: 'Founder' }}" class="our-story-section__img" loading="lazy" width="700" height="840">
+        {% else %}
+          <img src="{{ 'artisan-story.jpg' | asset_url }}" alt="Artisan at work" class="our-story-section__img" loading="lazy" width="700" height="840">
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Artisans Section -->
+  <section class="artisans-section section section--cream" id="ArtisansSection">
+    <div class="container">
+      <div class="section-header animate-fade-up">
+        <p class="section-eyebrow">The Makers</p>
+        <h2 class="section-heading">{{ section.settings.artisan_heading | default: 'The Artisans Behind Every Stitch' }}</h2>
+        <p class="section-subheading">{{ section.settings.artisan_subheading | default: 'Each piece from Aurelia Rituals is touched by the hands of a skilled artisan — a woman who has devoted her life to mastering this ancient art.' }}</p>
+      </div>
+      <div class="artisans-grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'artisan' %}
+            <div class="artisan-card animate-fade-up" {{ block.shopify_attributes }} style="animation-delay:{{ forloop.index | times: 120 }}ms;">
+              {% if block.settings.image %}
+                <div class="artisan-card__media">
+                  <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.name }}" class="artisan-card__img" loading="lazy" width="400" height="480">
+                </div>
+              {% else %}
+                {% assign artisan_fallbacks = 'artisan-story.jpg,artisan-portrait-2.jpg,artisan-hands.jpg' | split: ',' %}
+                {% assign fallback_img = artisan_fallbacks[forloop.index0] | default: 'artisan-story.jpg' %}
+                <div class="artisan-card__media">
+                  <img src="{{ fallback_img | asset_url }}" alt="{{ block.settings.name }}" class="artisan-card__img" loading="lazy" width="400" height="480">
+                </div>
+              {% endif %}
+              <div class="artisan-card__info">
+                <h3 class="artisan-card__name">{{ block.settings.name }}</h3>
+                <p class="artisan-card__role">{{ block.settings.role }}</p>
+                <p class="artisan-card__bio">{{ block.settings.bio }}</p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sujni Heritage -->
+  <section class="heritage-section section" id="SujniHeritage">
+    <div class="container heritage-section__inner">
+      <div class="heritage-section__content animate-fade-up">
+        <p class="section-eyebrow">The Heritage</p>
+        <h2 class="section-heading">{{ section.settings.heritage_heading | default: 'The Ancient Art of Sujni' }}</h2>
+        <div class="rte">{{ section.settings.heritage_body | default: '<p>Sujni embroidery originates from the Madhubani region of Bihar, India. Traditionally, women would upcycle worn-out dhotis and saris by layering them and stitching intricate, running-stitch patterns across the surface — creating both warmth and storytelling through textile.</p><p>Each motif in Sujni tells a story: of seasons, of festivals, of life. At Aurelia Rituals, we channel this rich tradition into contemporary products that feel right at home in a modern, mindful space.</p>' }}</div>
+      </div>
+      <div class="heritage-section__media animate-fade-up" style="animation-delay:150ms;">
+        {% if section.settings.heritage_image %}
+          <img src="{{ section.settings.heritage_image | image_url: width: 700 }}" alt="{{ section.settings.heritage_image_alt | default: 'Sujni heritage' }}" class="heritage-section__img" loading="lazy" width="700" height="500">
+        {% else %}
+          <img src="{{ 'story-artisan-group.jpg' | asset_url }}" alt="Sujni heritage artisans" class="heritage-section__img" loading="lazy" width="700" height="500">
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="story-cta section" id="StoryCTA">
+    <div class="container story-cta__inner animate-fade-up">
+      <h2 class="story-cta__heading">{{ section.settings.cta_heading | default: 'Ready to Begin Your Ritual?' }}</h2>
+      <p class="story-cta__desc">{{ section.settings.cta_desc | default: 'Explore our kits, choose your canvas, and start stitching your own story.' }}</p>
+      <div class="story-cta__btns">
+        <a href="/collections/ritual-kits" class="btn btn--primary" id="StoryCtaShop">Start Your Ritual</a>
+        <a href="/collections/heritage-collection" class="btn btn--outline" id="StoryCtaCollection">Shop Heritage Decor</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "tag": "section",
+  "class": "section-our-story",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image",         "label": "Hero Image"              },
+    { "type": "text",         "id": "eyebrow",            "label": "Eyebrow",      "default": "Who We Are"                },
+    { "type": "text",         "id": "heading",            "label": "Hero Heading", "default": "Our Story: Real People, Real Art." },
+    { "type": "text",         "id": "subheading",         "label": "Hero Subheading", "default": "Where a 400-year-old tradition meets the modern ritual of mindful making." },
+    { "type": "header",       "content": "Founder Section" },
+    { "type": "image_picker", "id": "founder_image",      "label": "Founder Image"           },
+    { "type": "text",         "id": "founder_heading",    "label": "Heading",      "default": "A Vision Born from Threads" },
+    { "type": "richtext",     "id": "founder_body",       "label": "Body"                    },
+    { "type": "header",       "content": "Artisan Section" },
+    { "type": "text",         "id": "artisan_heading",    "label": "Heading",      "default": "The Artisans Behind Every Stitch" },
+    { "type": "text",         "id": "artisan_subheading", "label": "Subheading"              },
+    { "type": "header",       "content": "Heritage Section" },
+    { "type": "image_picker", "id": "heritage_image",     "label": "Heritage Image"          },
+    { "type": "text",         "id": "heritage_heading",   "label": "Heading",      "default": "The Ancient Art of Sujni" },
+    { "type": "richtext",     "id": "heritage_body",      "label": "Body"                    },
+    { "type": "header",       "content": "CTA Section" },
+    { "type": "text",         "id": "cta_heading",        "label": "CTA Heading",  "default": "Ready to Begin Your Ritual?" },
+    { "type": "text",         "id": "cta_desc",           "label": "CTA Desc"                }
+  ],
+  "blocks": [
+    {
+      "type": "artisan",
+      "name": "Artisan Profile",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Artisan Photo"        },
+        { "type": "text",         "id": "name",  "label": "Name", "default": "Artisan Name" },
+        { "type": "text",         "id": "role",  "label": "Role", "default": "Sujni Master" },
+        { "type": "textarea",     "id": "bio",   "label": "Bio",  "default": "Over 20 years of mastering the art of Sujni embroidery, creating pieces that carry stories through every stitch." }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Our Story",
+    "blocks": [
+      { "type": "artisan", "settings": { "name": "Sunita Devi",  "role": "Lead Sujni Artisan",     "bio": "25 years of mastery. Sunita leads our artisan collective, training younger women in this ancient stitch tradition." } },
+      { "type": "artisan", "settings": { "name": "Meena Kumari", "role": "Thread & Colour Expert",   "bio": "Meena selects every thread in our kits with a master eye — ensuring each colour palette sings with precision and warmth." } },
+      { "type": "artisan", "settings": { "name": "Rani Devi",    "role": "Pattern Designer",         "bio": "Rani translates her grandmother's motifs into the modern designs that make Aurelia Rituals' pieces so distinctive." } }
+    ]
+  }]
+}
+{% endschema %}

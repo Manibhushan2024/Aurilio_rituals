@@ -1,0 +1,175 @@
+<section class="gifting-section section section--dark" id="GiftingSection" aria-label="Gifting and impact">
+  <div class="gifting-section__bg-image">
+    {% if section.settings.bg_image %}
+      <img
+        src="{{ section.settings.bg_image | image_url: width: 1920 }}"
+        alt=""
+        class="gifting-section__bg-img"
+        aria-hidden="true"
+        loading="lazy"
+        width="1920"
+        height="600"
+      >
+    {% else %}
+      <img
+        src="{{ 'gifting-impact.png' | asset_url }}"
+        alt=""
+        class="gifting-section__bg-img"
+        aria-hidden="true"
+        loading="lazy"
+        width="1920"
+        height="600"
+      >
+    {% endif %}
+    <div class="gifting-section__overlay"></div>
+  </div>
+
+  <div class="container gifting-section__inner">
+
+    <div class="gifting-section__header animate-fade-up">
+      {% if section.settings.eyebrow != blank %}
+        <p class="section-eyebrow section-eyebrow--light">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      <h2 class="section-heading gifting-section__heading">{{ section.settings.heading }}</h2>
+      {% if section.settings.subheading != blank %}
+        <p class="gifting-section__subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="gifting-cards__grid">
+      {% for block in section.blocks %}
+        <div class="gifting-card animate-fade-up" {{ block.shopify_attributes }} style="animation-delay:{{ forloop.index | times: 100 }}ms;">
+          <div class="gifting-card__icon" aria-hidden="true">
+            {% if block.settings.icon == 'wedding' %}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+            {% elsif block.settings.icon == 'gift' %}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            {% elsif block.settings.icon == 'team' %}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            {% elsif block.settings.icon == 'mom' %}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            {% else %}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            {% endif %}
+          </div>
+          <h3 class="gifting-card__title">{{ block.settings.title }}</h3>
+          <p class="gifting-card__desc">{{ block.settings.description }}</p>
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}" class="gifting-card__link">
+              {{ block.settings.link_label | default: 'Explore' }}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.cta_label != blank %}
+      <div class="gifting-section__cta animate-fade-up">
+        <a href="{{ section.settings.cta_url }}" class="btn btn--gold" id="GiftingSectionCTA">
+          {{ section.settings.cta_label }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gifting & Impact",
+  "tag": "section",
+  "class": "section-gifting",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Gift Mindfully"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Gifts That Stitch Hope"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Every Aurelia Rituals gift carries a story — of craft, connection, and conscious living."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Label",
+      "default": "Shop All Gifts"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gift_card",
+      "name": "Gift Occasion Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "wedding", "label": "Wedding / Love" },
+            { "value": "gift", "label": "Gift / Box" },
+            { "value": "team", "label": "Team / Corporate" },
+            { "value": "mom", "label": "Mom / Family" },
+            { "value": "star", "label": "Star / Special" }
+          ],
+          "default": "gift"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Gifting Occasion"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "A beautiful ritual gift for your special someone."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link Label",
+          "default": "Explore"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gifting & Impact",
+      "blocks": [
+        { "type": "gift_card", "settings": { "icon": "wedding", "title": "Bridal & Wedding", "description": "Premium Sujni ritual boxes for brides, bridesmaids & pre-wedding rituals." } },
+        { "type": "gift_card", "settings": { "icon": "gift", "title": "Birthday & Celebrations", "description": "A handcrafted gift that turns any occasion into a memory." } },
+        { "type": "gift_card", "settings": { "icon": "team", "title": "Corporate Gifting", "description": "Branded wellness ritual boxes for teams, clients & events." } },
+        { "type": "gift_card", "settings": { "icon": "mom", "title": "Mom & Family", "description": "Stitch together — bonding kits for families who love creating." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

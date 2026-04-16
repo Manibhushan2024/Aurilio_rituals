@@ -1,0 +1,116 @@
+{% assign current_collection = collection %}
+{% assign sort_by = current_collection.default_sort_by %}
+{% if request.params.sort_by %}{% assign sort_by = request.params.sort_by %}{% endif %}
+
+<!-- Collection Banner -->
+<section class="collection-banner section--cream" id="CollectionBanner" aria-label="{{ current_collection.title }}">
+  <div class="container collection-banner__inner">
+    {% if current_collection.image %}
+      <div class="collection-banner__media">
+        <img
+          src="{{ current_collection.image | image_url: width: 1440 }}"
+          alt="{{ current_collection.image.alt | default: current_collection.title }}"
+          class="collection-banner__img"
+          loading="eager"
+          width="1440"
+          height="400"
+        >
+        <div class="collection-banner__overlay"></div>
+      </div>
+    {% endif %}
+    <div class="collection-banner__content">
+      <h1 class="collection-banner__title">{{ current_collection.title }}</h1>
+      {% if current_collection.description != blank and section.settings.show_description %}
+        <div class="collection-banner__desc rte">{{ current_collection.description }}</div>
+      {% endif %}
+      {% if section.settings.show_product_count %}
+        <p class="collection-banner__count">{{ current_collection.products_count }} products</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Collection Grid Section -->
+<section class="collection-grid-section section" id="CollectionGrid" aria-label="Products in {{ current_collection.title }}">
+  <div class="container">
+
+    <!-- Toolbar: Sort -->
+    {% if section.settings.enable_sorting %}
+      <div class="collection-toolbar">
+        <p class="collection-toolbar__count" aria-live="polite">
+          {{ current_collection.products_count | pluralize: 'product', 'products' }}
+        </p>
+        <div class="collection-toolbar__sort">
+          <label for="SortBy" class="visually-hidden">Sort by</label>
+          <select id="SortBy" name="sort_by" class="collection-sort" onchange="window.location.search = '?sort_by=' + this.value">
+            {% for option in current_collection.sort_options %}
+              <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Product Grid -->
+    <div class="product-grid product-grid--{{ section.settings.columns_desktop }}" id="ProductGrid">
+      {% paginate current_collection.products by section.settings.products_per_page %}
+        {% for product in current_collection.products %}
+          {% render 'product-card', product: product, show_badge: true %}
+        {% else %}
+          <div class="collection-grid__empty">
+            <p>No products found in this collection.</p>
+            <a href="/collections/all" class="btn btn--outline">Browse All Products</a>
+          </div>
+        {% endfor %}
+      {% endpaginate %}
+    </div>
+
+    <!-- Pagination -->
+    {% paginate current_collection.products by section.settings.products_per_page %}
+      {% if paginate.pages > 1 %}
+        <nav class="pagination" aria-label="Collection pagination">
+          {% if paginate.previous %}
+            <a href="{{ paginate.previous.url }}" class="pagination__btn" aria-label="Previous page">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              Previous
+            </a>
+          {% endif %}
+          {% for part in paginate.parts %}
+            {% if part.is_link %}
+              <a href="{{ part.url }}" class="pagination__page">{{ part.title }}</a>
+            {% elsif part.title == paginate.current_page %}
+              <span class="pagination__page pagination__page--current" aria-current="page">{{ part.title }}</span>
+            {% else %}
+              <span class="pagination__ellipsis">{{ part.title }}</span>
+            {% endif %}
+          {% endfor %}
+          {% if paginate.next %}
+            <a href="{{ paginate.next.url }}" class="pagination__btn" aria-label="Next page">
+              Next
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          {% endif %}
+        </nav>
+      {% endif %}
+    {% endpaginate %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "tag": "section",
+  "class": "section-collection-grid",
+  "settings": [
+    { "type": "range",   "id": "products_per_page", "label": "Products per Page", "min": 8,  "max": 48, "step": 4, "default": 12   },
+    { "type": "select",  "id": "columns_desktop",   "label": "Columns (Desktop)", "options": [{"value":"2","label":"2"},{"value":"3","label":"3"},{"value":"4","label":"4"}], "default": "3" },
+    { "type": "select",  "id": "columns_mobile",    "label": "Columns (Mobile)",  "options": [{"value":"1","label":"1"},{"value":"2","label":"2"}], "default": "2" },
+    { "type": "checkbox","id": "enable_sorting",    "label": "Enable Sorting",    "default": true  },
+    { "type": "checkbox","id": "enable_filtering",  "label": "Enable Filtering",  "default": false },
+    { "type": "checkbox","id": "show_description",  "label": "Show Collection Description", "default": true },
+    { "type": "checkbox","id": "show_product_count","label": "Show Product Count","default": true  }
+  ],
+  "presets": [{ "name": "Collection Grid" }]
+}
+{% endschema %}

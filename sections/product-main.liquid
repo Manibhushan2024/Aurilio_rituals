@@ -1,0 +1,251 @@
+{% assign product = product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign product_form_id = 'ProductForm-' | append: product.id %}
+
+<section class="product-main section" id="ProductMain" aria-label="{{ product.title }}">
+  <div class="container product-main__inner">
+
+    <!-- ── LEFT: Gallery ─────────────────────────────── -->
+    <div class="product-gallery" id="ProductGallery">
+      <!-- Main image -->
+      <div class="product-gallery__main">
+        <div class="product-gallery__main-wrap" id="GalleryMain">
+          {% for image in product.images %}
+            <div class="product-gallery__slide {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" aria-hidden="{% unless forloop.first %}true{% endunless %}">
+              <img
+                src="{{ image | image_url: width: 1000 }}"
+                srcset="{{ image | image_url: width: 500 }} 500w, {{ image | image_url: width: 1000 }} 1000w"
+                sizes="(max-width: 767px) 100vw, 55vw"
+                alt="{{ image.alt | default: product.title }}"
+                class="product-gallery__img"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                width="1000"
+                height="1000"
+              >
+            </div>
+          {% else %}
+            <div class="product-gallery__slide is-active">
+              <div class="product-gallery__img-placeholder"></div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Thumbnails -->
+      {% if product.images.size > 1 %}
+        <div class="product-gallery__thumbs" id="GalleryThumbs" role="list">
+          {% for image in product.images limit: 8 %}
+            <button
+              class="product-gallery__thumb {% if forloop.first %}is-active{% endif %}"
+              data-index="{{ forloop.index0 }}"
+              aria-label="View image {{ forloop.index }}"
+              role="listitem"
+            >
+              <img
+                src="{{ image | image_url: width: 120 }}"
+                alt="{{ image.alt | default: product.title }}"
+                width="80"
+                height="80"
+                loading="lazy"
+              >
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- ── RIGHT: Product Info ─────────────────────────── -->
+    <div class="product-info {% if section.settings.enable_sticky_atc %}product-info--sticky{% endif %}" id="ProductInfo">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="{{ product.collections.first.url | default: '/collections' }}">{{ product.collections.first.title | default: 'Collections' }}</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">{{ product.title }}</span>
+      </nav>
+
+      <!-- Title -->
+      <h1 class="product-info__title">{{ product.title }}</h1>
+
+      <!-- Star Rating -->
+      <div class="product-info__rating" aria-label="4.8 out of 5 stars">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="product-info__rating-count">4.8 (124 reviews)</span>
+      </div>
+
+      <!-- Price -->
+      <div class="product-info__price" id="ProductPrice">
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <s class="price--compare">{{ current_variant.compare_at_price | money }}</s>
+          <span class="price--current price--sale">{{ current_variant.price | money }}</span>
+          {% assign savings = current_variant.compare_at_price | minus: current_variant.price | times: 100 | divided_by: current_variant.compare_at_price %}
+          <span class="price--badge">Save {{ savings }}%</span>
+        {% else %}
+          <span class="price--current">{{ current_variant.price | money }}</span>
+        {% endif %}
+      </div>
+
+      <!-- Short Description -->
+      {% if product.metafields.custom.short_description != blank %}
+        <p class="product-info__short-desc">{{ product.metafields.custom.short_description }}</p>
+      {% endif %}
+
+      <!-- Product Form -->
+      {% form 'product', product, id: product_form_id, class: 'product-form', novalidate: true %}
+        <input type="hidden" name="id" value="{{ current_variant.id }}" id="ProductVariantId">
+
+        <!-- Variants -->
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <div class="product-form__option">
+              <label class="product-form__option-label">
+                {{ option.name }}:
+                <strong id="SelectedOption{{ forloop.index }}">{{ option.selected_value }}</strong>
+              </label>
+              <div class="product-form__swatches" role="radiogroup" aria-label="{{ option.name }}">
+                {% for value in option.values %}
+                  <input
+                    type="radio"
+                    id="Option{{ forloop.parentloop.index }}_{{ forloop.index }}"
+                    name="{{ option.name }}"
+                    value="{{ value }}"
+                    class="product-form__swatch-input visually-hidden"
+                    {% if option.selected_value == value %}checked{% endif %}
+                  >
+                  <label
+                    for="Option{{ forloop.parentloop.index }}_{{ forloop.index }}"
+                    class="product-form__swatch-label"
+                  >{{ value }}</label>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endunless %}
+
+        <!-- Quantity -->
+        {% if section.settings.show_quantity %}
+          <div class="product-form__qty-wrap">
+            <label for="ProductQty" class="product-form__qty-label">Quantity</label>
+            <div class="qty-selector">
+              <button type="button" class="qty-btn" data-action="dec" aria-label="Decrease quantity">−</button>
+              <input type="number" id="ProductQty" name="quantity" value="1" min="1" class="qty-input" aria-label="Product quantity">
+              <button type="button" class="qty-btn" data-action="inc" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Add to Cart -->
+        <div class="product-form__submit-wrap">
+          <button
+            type="submit"
+            name="add"
+            class="btn btn--primary btn--full product-form__atc"
+            id="AddToCartBtn"
+            {% unless current_variant.available %}disabled{% endunless %}
+          >
+            {% if current_variant.available %}
+              Add to Ritual Bag
+            {% else %}
+              Sold Out
+            {% endif %}
+          </button>
+        </div>
+
+      {% endform %}
+
+      <!-- Artisan Note -->
+      {% if settings.show_artisan_note %}
+        <div class="product-info__artisan-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#C9A96E" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span>{{ settings.artisan_note_text }}</span>
+        </div>
+      {% endif %}
+
+      <!-- Trust badges row -->
+      <div class="product-info__trust">
+        <span>🔒 Secure Checkout</span>
+        <span>♻️ Mindful Returns</span>
+        <span>🚚 Fast Dispatch</span>
+      </div>
+
+      <!-- Accordion: Description / Whats Inside / Shipping -->
+      <div class="product-accordion" id="ProductAccordion">
+
+        <details class="accordion-item" open>
+          <summary class="accordion-item__summary">
+            About This Ritual
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="accordion-item__body rte">
+            {{ product.description }}
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-item__summary">
+            What's Inside the Box
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="accordion-item__body">
+            {% if product.metafields.custom.whats_inside != blank %}
+              <div class="rte">{{ product.metafields.custom.whats_inside }}</div>
+            {% else %}
+              <ul class="checklist">
+                <li>Premium wooden embroidery hoop</li>
+                <li>Pre-printed Sujni pattern fabric</li>
+                <li>Curated embroidery thread bundle</li>
+                <li>Needle kit (needles, threader, cutter)</li>
+                <li>QR code for step-by-step video tutorial</li>
+                <li>Premium instruction booklet</li>
+              </ul>
+            {% endif %}
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary class="accordion-item__summary">
+            Shipping & Returns
+            <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="accordion-item__body">
+            <ul class="checklist">
+              <li>Ships within 2–4 business days</li>
+              <li>Free shipping on orders above ₹1499</li>
+              <li>Mindful Returns within 7 days of delivery</li>
+              <li>WhatsApp support: {{ settings.footer_whatsapp }}</li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+
+      <!-- Social Share -->
+      {% if section.settings.show_social_share %}
+        <div class="product-info__share">
+          <span>Share:</span>
+          <a href="https://wa.me/?text={{ product.title | url_encode }}%20{{ shop.url }}{{ product.url }}" target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" class="share-link">WhatsApp</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Share on Instagram" class="share-link">Instagram</a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&media={{ product.featured_image | image_url: width: 800 }}&description={{ product.title | url_encode }}" target="_blank" rel="noopener noreferrer" aria-label="Pin on Pinterest" class="share-link">Pinterest</a>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Main",
+  "tag": "section",
+  "class": "section-product-main",
+  "settings": [
+    { "type": "checkbox", "id": "show_quantity",     "label": "Show Quantity Selector",  "default": true  },
+    { "type": "checkbox", "id": "show_social_share", "label": "Show Social Share Links", "default": true  },
+    { "type": "checkbox", "id": "enable_sticky_atc", "label": "Sticky Product Info",     "default": true  },
+    { "type": "checkbox", "id": "show_sku",          "label": "Show SKU",                "default": false }
+  ],
+  "presets": [{ "name": "Product Main" }]
+}
+{% endschema %}

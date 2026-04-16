@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "corporate-main": {
+      "type": "page-corporate",
+      "settings": {
+        "heading": "Sujni Rituals for Offices & Events",
+        "subheading": "Because the most productive teams are the ones who slow down together.",
+        "hero_cta_label": "Request a Quote",
+        "why_heading": "Creative Wellness Is the New Team Building",
+        "boxes_heading": "Choose Your Ritual Experience",
+        "form_heading": "Let's Create Something Together",
+        "form_subheading": "Tell us about your team and we'll craft a personalised Sujni ritual experience for you."
+      },
+      "block_order": ["box1","box2","box3"],
+      "blocks": {
+        "box1": { "type": "offering", "settings": { "icon": "desk",   "title": "The Office Calm Kit",    "description": "A quick desk-friendly ritual. Perfect for a mindful break from screen time. Includes a compact kit with hoop, thread, and tutorial access.", "price": "₹999 per person" } },
+        "box2": { "type": "offering", "settings": { "icon": "gift",   "title": "The Team Thank-You Box",  "description": "Premium branded gifting with a story. A beautiful Sujni ritual kit in a gift box — personalised with your brand or a custom message.",              "price": "₹1499 per person" } },
+        "box3": { "type": "offering", "settings": { "icon": "ritual", "title": "The Bridal Ritual Box",   "description": "For pre-wedding zen moments. A luxurious bridesmaid experience — each guest stitches their own keepsake together.",                               "price": "₹2499 per person" } }
+      }
+    }
+  },
+  "order": ["corporate-main"]
+}

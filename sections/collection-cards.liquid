@@ -1,0 +1,187 @@
+<section class="collection-cards section" id="CollectionCards" aria-label="Shop by collection">
+  <div class="container">
+
+    {% if section.settings.heading != blank %}
+      <div class="section-header animate-fade-up">
+        {% if section.settings.eyebrow != blank %}
+          <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        <h2 class="section-heading">{{ section.settings.heading }}</h2>
+        {% if section.settings.subheading != blank %}
+          <p class="section-subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="collection-cards__grid collection-cards__grid--{{ section.blocks.size }}">
+      {% for block in section.blocks %}
+        {% assign card_image = block.settings.image %}
+        <a
+          href="{{ block.settings.link }}"
+          class="collection-card animate-fade-up"
+          id="CollectionCard{{ forloop.index }}"
+          {{ block.shopify_attributes }}
+          style="animation-delay: {{ forloop.index | times: 120 }}ms;"
+          aria-label="{{ block.settings.title }}"
+        >
+          <!-- Image -->
+          <div class="collection-card__media">
+            {% if card_image %}
+              <img
+                src="{{ card_image | image_url: width: 800 }}"
+                srcset="{{ card_image | image_url: width: 400 }} 400w, {{ card_image | image_url: width: 800 }} 800w"
+                sizes="(max-width: 599px) 100vw, (max-width: 899px) 50vw, 25vw"
+                alt="{{ block.settings.title }}"
+                class="collection-card__img"
+                loading="lazy"
+                width="800"
+                height="1000"
+              >
+            {% else %}
+              {% assign collection_fallbacks = 'collection-heritage.jpg,collection-ritual-kits.jpg,collection-gifting.jpg,collection-corporate.jpg' | split: ',' %}
+              {% assign fallback_img = collection_fallbacks[forloop.index0] | default: 'collection-heritage.jpg' %}
+              <img
+                src="{{ fallback_img | asset_url }}"
+                sizes="(max-width: 599px) 100vw, (max-width: 899px) 50vw, 25vw"
+                alt="{{ block.settings.title }}"
+                class="collection-card__img"
+                loading="lazy"
+                width="800"
+                height="1000"
+              >
+            {% endif %}
+            <!-- Hover shimmer -->
+            <div class="collection-card__shimmer" aria-hidden="true"></div>
+          </div>
+
+          <!-- Info -->
+          <div class="collection-card__info">
+            {% if block.settings.tag != blank %}
+              <span class="collection-card__tag">{{ block.settings.tag }}</span>
+            {% endif %}
+            <h3 class="collection-card__title">{{ block.settings.title }}</h3>
+            {% if block.settings.description != blank %}
+              <p class="collection-card__desc">{{ block.settings.description }}</p>
+            {% endif %}
+            <span class="collection-card__cta">
+              {{ block.settings.cta_label | default: 'Shop Now' }}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Cards",
+  "tag": "section",
+  "class": "section-collection-cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Explore"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Shop by Collection"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "From ready-made heritage decor to DIY ritual kits — find your perfect way to stitch."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag Badge (e.g. New, Popular)",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Collection Title",
+          "default": "The Heritage Collection"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Short Description",
+          "default": "Handcrafted Sujni home decor for modern spaces."
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Cards",
+      "blocks": [
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "The Heritage Collection",
+            "description": "Finished Sujni cushions, wall hangings, quilts & totes for modern homes.",
+            "cta_label": "Shop Decor",
+            "tag": "Bestseller"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "The Ritual Kits",
+            "description": "Beginner-friendly DIY Sujni embroidery kits. Everything included.",
+            "cta_label": "Start Your Ritual"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "Bundles & Gifting",
+            "description": "Curated gift sets for weddings, birthdays, and team appreciation.",
+            "cta_label": "Gift Mindfully",
+            "tag": "Perfect Gift"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "title": "Corporate & Workshops",
+            "description": "Sujni wellness sessions and branded gifting for teams and events.",
+            "cta_label": "Book a Session"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

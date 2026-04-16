@@ -1,0 +1,108 @@
+{% comment %}
+  Product Card Snippet
+  Usage: {% render 'product-card', product: product, show_badge: true %}
+{% endcomment %}
+
+{% assign card_product = product %}
+{% assign first_image = card_product.featured_image %}
+{% assign second_image = card_product.images[1] %}
+{% assign first_variant = card_product.selected_or_first_available_variant %}
+
+<article class="product-card animate-fade-up" aria-label="{{ card_product.title }}">
+  <a href="{{ card_product.url }}" class="product-card__media-link" tabindex="-1">
+    <div class="product-card__media">
+
+      <!-- Primary Image -->
+      {% if first_image %}
+        <img
+          src="{{ first_image | image_url: width: 600 }}"
+          srcset="{{ first_image | image_url: width: 300 }} 300w, {{ first_image | image_url: width: 600 }} 600w"
+          sizes="(max-width: 599px) 45vw, (max-width: 899px) 30vw, 22vw"
+          alt="{{ first_image.alt | default: card_product.title }}"
+          class="product-card__img product-card__img--primary"
+          loading="lazy"
+          width="600"
+          height="600"
+        >
+      {% else %}
+        <div class="product-card__img-placeholder"></div>
+      {% endif %}
+
+      <!-- Hover Secondary Image -->
+      {% if second_image %}
+        <img
+          src="{{ second_image | image_url: width: 600 }}"
+          alt="{{ second_image.alt | default: card_product.title }}"
+          class="product-card__img product-card__img--secondary"
+          loading="lazy"
+          width="600"
+          height="600"
+        >
+      {% endif %}
+
+      <!-- Badges -->
+      <div class="product-card__badges" aria-label="Product badges">
+        {% if card_product.available == false %}
+          <span class="badge badge--sold-out">Sold Out</span>
+        {% elsif card_product.compare_at_price > card_product.price %}
+          {% assign savings = card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price %}
+          <span class="badge badge--sale">{{ savings }}% Off</span>
+        {% elsif card_product.tags contains 'new' or card_product.tags contains 'New' %}
+          <span class="badge badge--new">New</span>
+        {% endif %}
+      </div>
+
+      <!-- Quick Add Button -->
+      <div class="product-card__quick-add">
+        {% if card_product.variants.size == 1 and card_product.available %}
+          <form action="{{ routes.cart_add_url }}" method="post" class="product-card__quick-form">
+            <input type="hidden" name="id" value="{{ first_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="product-card__quick-btn" aria-label="Quick add {{ card_product.title }}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add to Cart
+            </button>
+          </form>
+        {% else %}
+          <a href="{{ card_product.url }}" class="product-card__quick-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            View Options
+          </a>
+        {% endif %}
+      </div>
+
+    </div>
+  </a>
+
+  <!-- Product Info -->
+  <div class="product-card__info">
+    {% if card_product.vendor != blank %}
+      <p class="product-card__vendor">{{ card_product.vendor }}</p>
+    {% endif %}
+    <h3 class="product-card__title">
+      <a href="{{ card_product.url }}" class="product-card__title-link">{{ card_product.title }}</a>
+    </h3>
+
+    <!-- Star Rating (static display — connect to review app) -->
+    <div class="product-card__rating" aria-label="4.8 out of 5 stars">
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <span class="product-card__rating-count">(4.8)</span>
+    </div>
+
+    <div class="product-card__price">
+      {% if card_product.compare_at_price > card_product.price %}
+        <s class="product-card__price--compare">{{ card_product.compare_at_price | money }}</s>
+      {% endif %}
+      <span class="product-card__price--current {% if card_product.compare_at_price > card_product.price %}product-card__price--sale{% endif %}">
+        {{ card_product.price | money }}
+      </span>
+    </div>
+
+    {% if settings.show_artisan_note %}
+      <p class="product-card__artisan-note">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Artisan Crafted
+      </p>
+    {% endif %}
+  </div>
+</article>

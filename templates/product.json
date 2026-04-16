@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "product-main": {
+      "type": "product-main",
+      "settings": {
+        "show_artisan_note": true,
+        "show_social_share": true,
+        "show_quantity": true,
+        "show_sku": false,
+        "show_tags": true,
+        "enable_sticky_atc": true
+      }
+    },
+    "product-details": {
+      "type": "product-details",
+      "settings": {
+        "heading": "What's Inside the Box"
+      }
+    },
+    "recently-viewed": {
+      "type": "best-sellers",
+      "settings": {
+        "eyebrow": "You May Also Love",
+        "heading": "Complete Your Ritual",
+        "subheading": "",
+        "products_limit": 4,
+        "columns_desktop": "4",
+        "show_view_all": false
+      }
+    }
+  },
+  "order": ["product-main","product-details","recently-viewed"]
+}

@@ -1,0 +1,174 @@
+<div class="page-corporate">
+
+  <!-- Hero -->
+  <section class="page-hero section--dark" id="CorporateHero">
+    <div class="page-hero__media">
+      {% if section.settings.hero_image %}
+        <img src="{{ section.settings.hero_image | image_url: width: 1440 }}" alt="{{ section.settings.hero_image_alt | default: 'Corporate workshops' }}" class="page-hero__img" loading="eager" width="1440" height="600">
+      {% else %}
+        <img src="{{ 'corporate-gift-hero.jpg' | asset_url }}" alt="Corporate workshops" class="page-hero__img" loading="eager" width="1440" height="600">
+      {% endif %}
+      <div class="page-hero__overlay page-hero__overlay--dark"></div>
+    </div>
+    <div class="container page-hero__content animate-fade-up">
+      <p class="section-eyebrow section-eyebrow--light">For Teams & Events</p>
+      <h1 class="page-hero__title page-hero__title--light">{{ section.settings.heading | default: 'Sujni Rituals for Offices & Events' }}</h1>
+      <p class="page-hero__subtitle page-hero__subtitle--light">{{ section.settings.subheading | default: 'Because the most productive teams are the ones who slow down together.' }}</p>
+      {% if section.settings.hero_cta_label != blank %}
+        <a href="#CorporateForm" class="btn btn--gold" id="CorporateHeroCTA">{{ section.settings.hero_cta_label | default: 'Request a Quote' }}</a>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Why Creative Wellness -->
+  <section class="corporate-why section" id="CorporateWhy">
+    <div class="container corporate-why__inner">
+      <div class="corporate-why__text animate-fade-up">
+        <p class="section-eyebrow">Why It Works</p>
+        <h2 class="section-heading">{{ section.settings.why_heading | default: 'Creative Wellness Is the New Team Building' }}</h2>
+        <div class="rte">{{ section.settings.why_body | default: '<p>In a world of back-to-back meetings and screen fatigue, giving your team a hands-on, creative experience is one of the most powerful investments you can make. Embroidery requires focus, calms the nervous system, and produces something tangible — fostering pride, patience, and connection.</p><p>Aurelia Rituals corporate workshops offer a premium, guided Sujni embroidery experience that teams actually look forward to. Whether it\'s a team off-site, a client gifting initiative, or a wellness day — we make it beautiful.</p>' }}</div>
+      </div>
+      <div class="corporate-why__media animate-fade-up" style="animation-delay:150ms;">
+        {% if section.settings.why_image %}
+          <img src="{{ section.settings.why_image | image_url: width: 700 }}" alt="Corporate workshop" class="corporate-why__img" loading="lazy" width="700" height="520">
+        {% else %}
+          <img src="{{ 'corporate-workshop.jpg' | asset_url }}" alt="Corporate workshop" class="corporate-why__img" loading="lazy" width="700" height="520">
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Curated Boxes -->
+  <section class="corporate-boxes section section--cream" id="CorporateBoxes">
+    <div class="container">
+      <div class="section-header animate-fade-up">
+        <p class="section-eyebrow">Curated Offerings</p>
+        <h2 class="section-heading">{{ section.settings.boxes_heading | default: 'Choose Your Ritual Experience' }}</h2>
+      </div>
+      <div class="corporate-boxes__grid">
+        {% for block in section.blocks %}
+          {% if block.type == 'offering' %}
+            <div class="corporate-box animate-fade-up" {{ block.shopify_attributes }} style="animation-delay:{{ forloop.index | times: 100 }}ms;">
+              <div class="corporate-box__icon" aria-hidden="true">
+                {% if block.settings.icon == 'desk' %}
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                {% elsif block.settings.icon == 'gift' %}
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                {% else %}
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+                {% endif %}
+              </div>
+              <h3 class="corporate-box__title">{{ block.settings.title }}</h3>
+              <p class="corporate-box__desc">{{ block.settings.description }}</p>
+              {% if block.settings.price != blank %}
+                <p class="corporate-box__price">Starting at {{ block.settings.price }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Request Form -->
+  <section class="corporate-form section" id="CorporateForm">
+    <div class="container corporate-form__inner">
+      <div class="section-header animate-fade-up">
+        <p class="section-eyebrow">Get a Custom Quote</p>
+        <h2 class="section-heading">{{ section.settings.form_heading | default: 'Let\'s Create Something Together' }}</h2>
+        <p class="section-subheading">{{ section.settings.form_subheading | default: 'Tell us about your team and we\'ll craft a personalised Sujni ritual experience for you.' }}</p>
+      </div>
+      <form class="contact-form corporate-form__form" action="/contact" method="post" id="CorporateContactForm">
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="CorporateName" class="form-label">Your Name *</label>
+            <input type="text" id="CorporateName" name="contact[name]" class="form-input" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label for="CorporateEmail" class="form-label">Email Address *</label>
+            <input type="email" id="CorporateEmail" name="contact[email]" class="form-input" placeholder="your@company.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="CorporateCompany" class="form-label">Company / Organisation</label>
+            <input type="text" id="CorporateCompany" name="contact[company]" class="form-input" placeholder="Company name">
+          </div>
+          <div class="form-group">
+            <label for="CorporateTeamSize" class="form-label">Team Size</label>
+            <select id="CorporateTeamSize" name="contact[team_size]" class="form-input form-select">
+              <option value="">Select team size</option>
+              <option value="5-15">5 – 15 people</option>
+              <option value="15-30">15 – 30 people</option>
+              <option value="30-50">30 – 50 people</option>
+              <option value="50+">50+ people</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="CorporateOccasion" class="form-label">Type of Event</label>
+          <select id="CorporateOccasion" name="contact[occasion]" class="form-input form-select">
+            <option value="">Select occasion type</option>
+            <option value="team-building">Team Building Day</option>
+            <option value="corporate-gifting">Corporate Gifting / Hampers</option>
+            <option value="client-event">Client Entertainment Event</option>
+            <option value="wellness-retreat">Employee Wellness Retreat</option>
+            <option value="wedding">Wedding / Bridal Party</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="CorporateMessage" class="form-label">Tell us more *</label>
+          <textarea id="CorporateMessage" name="contact[body]" class="form-input form-textarea" rows="5" placeholder="Share your vision, date, budget, and any special requirements..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary" id="CorporateSubmit">Send My Request</button>
+      </form>
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Corporate & Workshops",
+  "tag": "section",
+  "class": "section-corporate",
+  "settings": [
+    { "type": "image_picker","id": "hero_image",     "label": "Hero Image"      },
+    { "type": "text",        "id": "heading",        "label": "Hero Heading",   "default": "Sujni Rituals for Offices & Events" },
+    { "type": "text",        "id": "subheading",     "label": "Hero Subheading","default": "Because the most productive teams are the ones who slow down together." },
+    { "type": "text",        "id": "hero_cta_label", "label": "Hero CTA",       "default": "Request a Quote" },
+    { "type": "header",      "content": "Why Section"  },
+    { "type": "image_picker","id": "why_image",      "label": "Why Image"       },
+    { "type": "text",        "id": "why_heading",    "label": "Heading",        "default": "Creative Wellness Is the New Team Building" },
+    { "type": "richtext",    "id": "why_body",       "label": "Body"            },
+    { "type": "header",      "content": "Boxes Section" },
+    { "type": "text",        "id": "boxes_heading",  "label": "Heading",        "default": "Choose Your Ritual Experience" },
+    { "type": "header",      "content": "Form Section"  },
+    { "type": "text",        "id": "form_heading",   "label": "Form Heading",   "default": "Let's Create Something Together" },
+    { "type": "text",        "id": "form_subheading","label": "Form Subheading" }
+  ],
+  "blocks": [
+    {
+      "type": "offering",
+      "name": "Offering Box",
+      "settings": [
+        { "type": "select","id": "icon",        "label": "Icon",  "options": [{"value":"desk","label":"Desk"},{"value":"gift","label":"Gift"},{"value":"ritual","label":"Ritual"}], "default": "gift" },
+        { "type": "text",  "id": "title",       "label": "Title", "default": "The Office Calm Kit" },
+        { "type": "textarea","id": "description","label": "Description","default": "A premium desk-sized ritual kit for focus, mindfulness, and a creative pause during the workday." },
+        { "type": "text",  "id": "price",       "label": "Starting Price", "default": "₹999 per person" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Corporate & Workshops",
+    "blocks": [
+      { "type": "offering", "settings": { "icon": "desk",    "title": "The Office Calm Kit",         "description": "A quick desk-friendly ritual. Perfect for a mindful break from screen time. Includes a compact kit with hoop, thread, and tutorial access.", "price": "₹999 per person" } },
+      { "type": "offering", "settings": { "icon": "gift",    "title": "The Team Thank-You Box",      "description": "Premium branded gifting with a story. A beautiful Sujni ritual kit in a gift box — personalised with your brand or a custom message.", "price": "₹1499 per person" } },
+      { "type": "offering", "settings": { "icon": "ritual",  "title": "The Bridal Ritual Box",       "description": "For pre-wedding zen moments. A luxurious bridesmaid experience — each guest stitch their own keepsake together.", "price": "₹2499 per person" } }
+    ]
+  }]
+}
+{% endschema %}

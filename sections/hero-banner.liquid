@@ -1,0 +1,266 @@
+{% assign hero_image = section.settings.hero_image %}
+{% assign hero_image_mobile = section.settings.hero_image_mobile %}
+
+<section
+  class="hero-banner"
+  id="HeroBanner"
+  style="min-height: {{ section.settings.min_height }}px;"
+  aria-label="Hero banner"
+>
+  <!-- Background Image -->
+  <div class="hero-banner__bg">
+    {% if hero_image %}
+      <img
+        src="{{ hero_image | image_url: width: 1920 }}"
+        srcset="
+          {{ hero_image | image_url: width: 600 }} 600w,
+          {{ hero_image | image_url: width: 900 }} 900w,
+          {{ hero_image | image_url: width: 1200 }} 1200w,
+          {{ hero_image | image_url: width: 1920 }} 1920w
+        "
+        sizes="100vw"
+        alt="{{ section.settings.hero_image_alt | default: shop.name }}"
+        class="hero-banner__img hero-banner__img--desktop"
+        loading="eager"
+        fetchpriority="high"
+        width="1920"
+        height="900"
+      >
+    {% else %}
+      <img
+        src="{{ 'hero-banner.jpg' | asset_url }}"
+        sizes="100vw"
+        alt="{{ section.settings.hero_image_alt | default: shop.name }}"
+        class="hero-banner__img hero-banner__img--desktop"
+        loading="eager"
+        fetchpriority="high"
+        width="1920"
+        height="900"
+      >
+    {% endif %}
+
+    {% if hero_image_mobile %}
+      <img
+        src="{{ hero_image_mobile | image_url: width: 800 }}"
+        alt="{{ section.settings.hero_image_alt | default: shop.name }}"
+        class="hero-banner__img hero-banner__img--mobile"
+        loading="eager"
+        fetchpriority="high"
+        width="800"
+        height="1000"
+      >
+    {% else %}
+      <img
+        src="{{ 'hero-banner-mobile.png' | asset_url }}"
+        alt="{{ section.settings.hero_image_alt | default: shop.name }}"
+        class="hero-banner__img hero-banner__img--mobile"
+        loading="eager"
+        fetchpriority="high"
+        width="800"
+        height="1000"
+      >
+    {% endif %}
+
+    <!-- Overlay -->
+    <div class="hero-banner__overlay" style="background: rgba({{ section.settings.overlay_color | color_extract: 'red' }}, {{ section.settings.overlay_color | color_extract: 'green' }}, {{ section.settings.overlay_color | color_extract: 'blue' }}, {{ section.settings.overlay_opacity | divided_by: 100.0 }});"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="container hero-banner__content hero-banner__content--{{ section.settings.content_position }}">
+    <div class="hero-banner__text animate-fade-up">
+
+      {% if section.settings.eyebrow != blank %}
+        <p class="hero-banner__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="hero-banner__heading" style="color: {{ section.settings.heading_color }};">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="hero-banner__subheading" style="color: {{ section.settings.subheading_color }};">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+
+      <div class="hero-banner__ctas">
+        {% if section.settings.btn_primary_label != blank %}
+          <a
+            href="{{ section.settings.btn_primary_url }}"
+            class="btn btn--primary"
+            id="HeroCTAPrimary"
+          >
+            {{ section.settings.btn_primary_label }}
+          </a>
+        {% endif %}
+
+        {% if section.settings.btn_secondary_label != blank %}
+          <a
+            href="{{ section.settings.btn_secondary_url }}"
+            class="btn btn--outline"
+            id="HeroCTASecondary"
+          >
+            {{ section.settings.btn_secondary_label }}
+          </a>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="hero-banner__scroll-hint" aria-hidden="true">
+    <span class="hero-banner__scroll-line"></span>
+    <span class="hero-banner__scroll-text">Scroll</span>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section-hero-banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image (Desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Hero Background Image (Mobile)"
+    },
+    {
+      "type": "text",
+      "id": "hero_image_alt",
+      "label": "Image Alt Text",
+      "default": "Aurelia Rituals – Premium Sujni Embroidery"
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Colour",
+      "default": "#1A1209"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity (%)",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Label",
+      "default": "Premium Sujni Heritage"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Stitch Your Calm."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Colour",
+      "default": "#FAF6F0"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Mindful Sujni embroidery kits & heritage decor, crafted for modern spaces."
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Colour",
+      "default": "#E0D5C5"
+    },
+    {
+      "type": "header",
+      "content": "Primary Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_label",
+      "label": "Primary Button Label",
+      "default": "Explore the Collections"
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_url",
+      "label": "Primary Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_label",
+      "label": "Secondary Button Label",
+      "default": "Learn Our Story"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_url",
+      "label": "Secondary Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum Height (px)",
+      "min": 400,
+      "max": 900,
+      "step": 50,
+      "default": 700
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "eyebrow": "Premium Sujni Heritage",
+      "heading": "Stitch Your Calm.",
+      "subheading": "Mindful Sujni embroidery kits & heritage decor, crafted for modern spaces.",
+      "btn_primary_label": "Explore the Collections",
+      "btn_secondary_label": "Learn Our Story"
+    }
+  ]
+}
+{% endschema %}
