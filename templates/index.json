@@ -18,6 +18,14 @@
         "min_height": 700
       }
     },
+    "marquee-ticker": {
+      "type": "marquee-ticker",
+      "settings": {
+        "ticker_text": "Handcrafted in Bihar | 400-Year-Old Sujni Tradition | Free Shipping Over ₹1499 | Empowering Rural Artisans | DIY Ritual Kits | Premium Heritage Decor | Slow Fashion. Mindful Living",
+        "speed": 35,
+        "style": "gold"
+      }
+    },
     "trust-bar": {
       "type": "trust-bar",
       "block_order": ["trust1","trust2","trust3","trust4","trust5"],
@@ -44,6 +52,23 @@
         "col4": { "type": "collection_card", "settings": { "title": "Corporate & Workshops",    "description": "Sujni wellness sessions and branded gifting for teams and events.",       "cta_label": "Book a Session",  "link": "/pages/corporate-workshops",       "tag": ""              } }
       }
     },
+    "process-steps": {
+      "type": "process-steps",
+      "settings": {
+        "eyebrow": "How It Works",
+        "heading": "Your Ritual in 4 Simple Steps",
+        "subheading": "No experience needed. Everything is included in your kit.",
+        "cta_label": "Shop All Kits",
+        "cta_url": "/collections/ritual-kits"
+      },
+      "block_order": ["step1","step2","step3","step4"],
+      "blocks": {
+        "step1": { "type": "step", "settings": { "icon": "box",     "title": "Choose Your Kit",          "description": "Browse heritage decor or DIY ritual kits. Each one curated with care." } },
+        "step2": { "type": "step", "settings": { "icon": "sparkle", "title": "Unbox the Ritual",          "description": "Everything arrives in a beautiful gift-ready box — hoop, thread, canvas, and tutorial." } },
+        "step3": { "type": "step", "settings": { "icon": "needle",  "title": "Stitch Mindfully",          "description": "Follow the video tutorial at your own pace. No experience needed. Just intention." } },
+        "step4": { "type": "step", "settings": { "icon": "heart",   "title": "Wear or Gift with Pride",   "description": "Display your finished piece, gift it, or frame it. Every stitch tells your story." } }
+      }
+    },
     "story-preview": {
       "type": "story-preview",
       "settings": {
@@ -59,6 +84,34 @@
         "stat3_label": "Handcrafted",
         "cta_label": "Read Our Story",
         "cta_url": "/pages/our-story"
+      }
+    },
+    "artisan-video": {
+      "type": "artisan-video",
+      "settings": {
+        "eyebrow": "The Ritual in Motion",
+        "heading": "Watch the Ritual Come Alive",
+        "body": "<p>Every stitch is an act of intention. Watch how our artisans in Bihar bring centuries of Sujni tradition into a single, mindful canvas — and discover how you can be part of this living art form.</p>",
+        "cta_label": "Start Your Ritual",
+        "cta_url": "/collections/ritual-kits",
+        "video_type": "file",
+        "autoplay": true,
+        "caption": "Filmed at our artisan collective in Madhubani, Bihar.",
+        "layout": "text_left"
+      }
+    },
+    "impact-stats": {
+      "type": "impact-stats",
+      "settings": {
+        "eyebrow": "Our Impact",
+        "heading": "Stitch by Stitch, We Change Lives"
+      },
+      "block_order": ["stat1","stat2","stat3","stat4"],
+      "blocks": {
+        "stat1": { "type": "stat", "settings": { "icon": "artisans",  "number": "500",  "suffix": "+", "label": "Artisans Empowered",    "sublabel": "Across rural Bihar"         } },
+        "stat2": { "type": "stat", "settings": { "icon": "products",  "number": "5000", "suffix": "+", "label": "Ritual Kits Delivered",  "sublabel": "Across 12+ countries"       } },
+        "stat3": { "type": "stat", "settings": { "icon": "years",     "number": "400",  "suffix": "",  "label": "Years of Sujni Heritage", "sublabel": "Ancient art, modern hands"  } },
+        "stat4": { "type": "stat", "settings": { "icon": "countries", "number": "15",   "suffix": "+", "label": "Countries Reached",       "sublabel": "Indian heritage, global hearts" } }
       }
     },
     "gifting-impact": {
@@ -106,9 +159,13 @@
   },
   "order": [
     "hero-banner",
+    "marquee-ticker",
     "trust-bar",
     "collection-cards",
+    "process-steps",
     "story-preview",
+    "artisan-video",
+    "impact-stats",
     "gifting-impact",
     "best-sellers",
     "newsletter"

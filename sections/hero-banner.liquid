@@ -7,9 +7,21 @@
   style="min-height: {{ section.settings.min_height }}px;"
   aria-label="Hero banner"
 >
-  <!-- Background Image -->
+  <!-- Background: Video (if enabled) or Image -->
   <div class="hero-banner__bg">
-    {% if hero_image %}
+    {% if section.settings.enable_video %}
+      <video
+        class="hero-banner__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="{{ 'hero-banner.jpg' | asset_url }}"
+        aria-hidden="true"
+      >
+        <source src="{{ 'hero-video-loop.mp4' | asset_url }}" type="video/mp4">
+      </video>
+    {% elsif hero_image %}
       <img
         src="{{ hero_image | image_url: width: 1920 }}"
         srcset="
@@ -126,7 +138,14 @@
   "settings": [
     {
       "type": "header",
-      "content": "Images"
+      "content": "Background — Video or Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video",
+      "label": "Use Video Background (hero-video-loop.mp4)",
+      "default": false,
+      "info": "Upload hero-video-loop.mp4 to your assets folder first. Video overrides the image below."
     },
     {
       "type": "image_picker",

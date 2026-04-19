@@ -1,0 +1,98 @@
+<section class="process-steps section" id="ProcessSteps" aria-label="How it works">
+  <div class="container">
+
+    <div class="section-header animate-fade-up">
+      {% if section.settings.eyebrow != blank %}
+        <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      <h2 class="section-heading">{{ section.settings.heading | default: 'Your Ritual in 4 Simple Steps' }}</h2>
+      {% if section.settings.subheading != blank %}
+        <p class="section-subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="process-steps__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'step' %}
+          <div class="process-step" {{ block.shopify_attributes }}>
+            <div class="process-step__number" aria-hidden="true">
+              <span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            </div>
+            <div class="process-step__icon" aria-hidden="true">
+              {% if block.settings.icon == 'box' %}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              {% elsif block.settings.icon == 'needle' %}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2 L22 12 L12 22 L2 12 Z"/><circle cx="12" cy="12" r="3"/></svg>
+              {% elsif block.settings.icon == 'heart' %}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              {% elsif block.settings.icon == 'sparkle' %}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-5.74L4 10l5.91-1.74z"/></svg>
+              {% else %}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              {% endif %}
+            </div>
+            <h3 class="process-step__title">{{ block.settings.title }}</h3>
+            <p class="process-step__desc">{{ block.settings.description }}</p>
+          </div>
+          {% unless forloop.last %}<div class="process-step__connector" aria-hidden="true"></div>{% endunless %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.cta_label != blank %}
+      <div class="section-footer animate-fade-up">
+        <a href="{{ section.settings.cta_url | default: '/collections/ritual-kits' }}" class="btn btn--primary" id="ProcessStepsCTA">
+          {{ section.settings.cta_label }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Process Steps",
+  "tag": "section",
+  "class": "section-process-steps",
+  "settings": [
+    { "type": "text", "id": "eyebrow",    "label": "Eyebrow",    "default": "How It Works" },
+    { "type": "text", "id": "heading",    "label": "Heading",    "default": "Your Ritual in 4 Simple Steps" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "No experience needed. Everything is included in your kit." },
+    { "type": "text", "id": "cta_label",  "label": "CTA Label",  "default": "Shop All Kits" },
+    { "type": "url",  "id": "cta_url",    "label": "CTA Link" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "box",     "label": "Box / Kit"     },
+            { "value": "needle",  "label": "Needle / Craft" },
+            { "value": "heart",   "label": "Heart / Share"  },
+            { "value": "sparkle", "label": "Sparkle / Magic"},
+            { "value": "clock",   "label": "Clock / Time"   }
+          ],
+          "default": "box"
+        },
+        { "type": "text",     "id": "title",       "label": "Step Title",       "default": "Choose Your Kit"   },
+        { "type": "textarea", "id": "description", "label": "Step Description", "default": "Browse our curated collections and pick the ritual that calls to you." }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Process Steps",
+    "blocks": [
+      { "type": "step", "settings": { "icon": "box",     "title": "Choose Your Kit",     "description": "Browse heritage decor or DIY ritual kits. Each one curated with care." } },
+      { "type": "step", "settings": { "icon": "sparkle", "title": "Unbox the Ritual",    "description": "Everything arrives in a beautiful gift-ready box — hoop, thread, canvas, and tutorial." } },
+      { "type": "step", "settings": { "icon": "needle",  "title": "Stitch Mindfully",    "description": "Follow the video tutorial at your own pace. No experience needed. Just intention." } },
+      { "type": "step", "settings": { "icon": "heart",   "title": "Wear or Gift with Pride", "description": "Display your finished piece, gift it, or frame it. Every stitch tells your story." } }
+    ]
+  }]
+}
+{% endschema %}

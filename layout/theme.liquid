@@ -51,10 +51,21 @@
 
   <!-- Announcement Bar -->
   {% if settings.announcement_text != blank %}
-  <div class="announcement-bar" style="background:{{ settings.announcement_bg }};color:{{ settings.announcement_text_color }};">
-    <div class="announcement-bar__inner">
-      <p class="announcement-bar__text">{{ settings.announcement_text }}</p>
+  <div class="announcement-bar announcement-bar--marquee" style="background:{{ settings.announcement_bg }};color:{{ settings.announcement_text_color }};" role="banner" aria-label="Site announcements">
+    <div class="announcement-bar__marquee" aria-hidden="true">
+      <div class="announcement-bar__track">
+        {% assign ann_items = settings.announcement_text | split: '|' %}
+        {% for item in ann_items %}
+          <span class="announcement-bar__item">{{ item | strip }}</span>
+          <span class="announcement-bar__sep">&#10022;</span>
+        {% endfor %}
+        {% for item in ann_items %}
+          <span class="announcement-bar__item">{{ item | strip }}</span>
+          <span class="announcement-bar__sep">&#10022;</span>
+        {% endfor %}
+      </div>
     </div>
+    <p class="visually-hidden">{{ settings.announcement_text | replace: '|', '.' }}</p>
   </div>
   {% endif %}
 
@@ -77,6 +88,11 @@
 
   <!-- Main JS -->
   <script src="{{ 'main.js' | asset_url }}" defer></script>
+
+  <!-- GSAP + ScrollTrigger for premium animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="{{ 'gsap-animations.js' | asset_url }}" defer></script>
 
 </body>
 </html>

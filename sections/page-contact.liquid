@@ -1,0 +1,138 @@
+<div class="page-contact">
+
+  <!-- Hero -->
+  <section class="page-hero page-hero--compact section--cream" id="ContactHero">
+    <div class="container page-hero__content animate-fade-up" style="padding-block: var(--space-16);">
+      <p class="section-eyebrow">{{ section.settings.eyebrow | default: 'We\'re Here' }}</p>
+      <h1 class="page-hero__title">{{ section.settings.heading | default: 'Get in Touch' }}</h1>
+      <p class="page-hero__subtitle">{{ section.settings.subheading | default: 'Questions about your order, wholesale enquiries, or just want to say hello — we\'d love to hear from you.' }}</p>
+    </div>
+  </section>
+
+  <!-- Contact Grid -->
+  <section class="contact-section section" id="ContactMain">
+    <div class="container contact-section__grid">
+
+      <!-- Contact Info -->
+      <div class="contact-info animate-fade-up">
+        <h2 class="contact-info__heading">{{ section.settings.info_heading | default: 'Reach Us Directly' }}</h2>
+        <p class="contact-info__desc">{{ section.settings.info_desc | default: 'We reply within 24 hours on business days. WhatsApp is the fastest way to reach us.' }}</p>
+
+        <ul class="contact-info__list">
+          <li class="contact-info__item">
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+            <div>
+              <p class="contact-info__label">WhatsApp (fastest)</p>
+              <a href="https://wa.me/919334892585" class="contact-info__link" target="_blank" rel="noopener">+91 9334892585</a>
+            </div>
+          </li>
+          <li class="contact-info__item">
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <p class="contact-info__label">Email</p>
+              <a href="mailto:manibhushank437@gmail.com" class="contact-info__link">manibhushank437@gmail.com</a>
+            </div>
+          </li>
+          <li class="contact-info__item">
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <p class="contact-info__label">Phone</p>
+              <a href="tel:+919334892585" class="contact-info__link">+91 9334892585</a>
+            </div>
+          </li>
+          <li class="contact-info__item">
+            <div class="contact-info__icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <p class="contact-info__label">Response Time</p>
+              <p class="contact-info__text">Mon–Sat, 10am – 6pm IST<br>We reply within 24 hours</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="contact-info__social">
+          <p class="contact-info__social-label">Follow our journey</p>
+          <a href="{{ settings.social_instagram_url }}" class="contact-info__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @aureliarituals
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrap animate-fade-up" style="animation-delay:150ms;">
+        <h2 class="contact-form-wrap__heading">{{ section.settings.form_heading | default: 'Send Us a Message' }}</h2>
+        {% form 'contact', id: 'ContactPageForm', class: 'contact-form' %}
+          {% if form.posted_successfully? %}
+            <div class="form-success" role="status">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <p>{{ section.settings.success_message | default: "Thank you! We'll get back to you within 24 hours." }}</p>
+            </div>
+          {% else %}
+            {% if form.errors %}
+              <div class="form-error" role="alert">{{ form.errors | default_errors }}</div>
+            {% endif %}
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ContactName" class="form-label">Your Name *</label>
+                <input type="text" id="ContactName" name="contact[name]" class="form-input" placeholder="Full name" required value="{{ form.name }}">
+              </div>
+              <div class="form-group">
+                <label for="ContactEmail" class="form-label">Email Address *</label>
+                <input type="email" id="ContactEmail" name="contact[email]" class="form-input" placeholder="your@email.com" required value="{{ form.email }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="ContactPhone" class="form-label">Phone / WhatsApp</label>
+              <input type="tel" id="ContactPhone" name="contact[phone]" class="form-input" placeholder="+91 98765 43210">
+            </div>
+            <div class="form-group">
+              <label for="ContactSubject" class="form-label">Subject</label>
+              <select id="ContactSubject" name="contact[subject]" class="form-input form-select">
+                <option value="">Select a topic</option>
+                <option value="order">Order Query</option>
+                <option value="product">Product Question</option>
+                <option value="corporate">Corporate / Bulk Order</option>
+                <option value="return">Return / Exchange</option>
+                <option value="wholesale">Wholesale Enquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ContactMessage" class="form-label">Message *</label>
+              <textarea id="ContactMessage" name="contact[body]" class="form-input form-textarea" rows="5" placeholder="Tell us how we can help..." required>{{ form.body }}</textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full" id="ContactSubmit">Send Message</button>
+          {% endif %}
+        {% endform %}
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "tag": "section",
+  "class": "section-contact",
+  "settings": [
+    { "type": "text",    "id": "eyebrow",         "label": "Eyebrow",          "default": "We're Here" },
+    { "type": "text",    "id": "heading",          "label": "Hero Heading",     "default": "Get in Touch" },
+    { "type": "text",    "id": "subheading",       "label": "Hero Subheading",  "default": "Questions about your order, wholesale enquiries, or just want to say hello — we'd love to hear from you." },
+    { "type": "text",    "id": "info_heading",     "label": "Info Column Heading", "default": "Reach Us Directly" },
+    { "type": "text",    "id": "info_desc",        "label": "Info Column Desc" },
+    { "type": "text",    "id": "form_heading",     "label": "Form Heading",     "default": "Send Us a Message" },
+    { "type": "text",    "id": "success_message",  "label": "Success Message",  "default": "Thank you! We'll get back to you within 24 hours." }
+  ],
+  "presets": [{ "name": "Contact Page" }]
+}
+{% endschema %}

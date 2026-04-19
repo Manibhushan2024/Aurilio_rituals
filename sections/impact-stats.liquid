@@ -1,0 +1,94 @@
+<section class="impact-stats section" id="ImpactStats" aria-label="Our impact">
+  <div class="container">
+
+    {% if section.settings.eyebrow != blank or section.settings.heading != blank %}
+      <div class="section-header animate-fade-up">
+        {% if section.settings.eyebrow != blank %}
+          <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="section-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="impact-stats__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'stat' %}
+          <div class="impact-stat animate-fade-up" {{ block.shopify_attributes }} style="animation-delay:{{ forloop.index | times: 100 }}ms;">
+            <div class="impact-stat__icon" aria-hidden="true">
+              {% if block.settings.icon == 'artisans' %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              {% elsif block.settings.icon == 'products' %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              {% elsif block.settings.icon == 'countries' %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              {% elsif block.settings.icon == 'years' %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              {% else %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+              {% endif %}
+            </div>
+            <div class="impact-stat__number-wrap">
+              <span class="impact-stat__prefix">{{ block.settings.prefix }}</span>
+              <span class="impact-stat__number stat-counter" data-target="{{ block.settings.number }}">{{ block.settings.number }}</span>
+              <span class="impact-stat__suffix">{{ block.settings.suffix }}</span>
+            </div>
+            <p class="impact-stat__label">{{ block.settings.label }}</p>
+            {% if block.settings.sublabel != blank %}
+              <p class="impact-stat__sublabel">{{ block.settings.sublabel }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Impact Stats",
+  "tag": "section",
+  "class": "section-impact-stats",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Impact" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Stitch by Stitch, We Change Lives" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "artisans", "label": "Artisans" },
+            { "value": "products", "label": "Products / Orders" },
+            { "value": "countries", "label": "Countries" },
+            { "value": "years", "label": "Years / Heritage" },
+            { "value": "ritual", "label": "Ritual" }
+          ],
+          "default": "artisans"
+        },
+        { "type": "text", "id": "prefix",   "label": "Prefix (e.g. ₹)",   "default": "" },
+        { "type": "text", "id": "number",   "label": "Number",             "default": "500" },
+        { "type": "text", "id": "suffix",   "label": "Suffix (e.g. +, K)", "default": "+" },
+        { "type": "text", "id": "label",    "label": "Label",              "default": "Artisans Empowered" },
+        { "type": "text", "id": "sublabel", "label": "Sub-label (optional)", "default": "Across rural Bihar" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Impact Stats",
+    "blocks": [
+      { "type": "stat", "settings": { "icon": "artisans",  "number": "500",  "suffix": "+", "label": "Artisans Empowered",   "sublabel": "Across rural Bihar" } },
+      { "type": "stat", "settings": { "icon": "products",  "number": "5000", "suffix": "+", "label": "Ritual Kits Delivered",  "sublabel": "Across 12+ countries" } },
+      { "type": "stat", "settings": { "icon": "years",     "prefix": "", "number": "400", "suffix": "", "label": "Years of Sujni Heritage", "sublabel": "Ancient art, modern hands" } },
+      { "type": "stat", "settings": { "icon": "countries", "number": "15",   "suffix": "+", "label": "Countries Reached",      "sublabel": "Indian heritage, global hearts" } }
+    ]
+  }]
+}
+{% endschema %}

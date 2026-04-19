@@ -1,0 +1,56 @@
+<section class="marquee-section" id="MarqueeTicker" aria-label="Brand highlights">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__inner">
+      {% assign items = section.settings.ticker_text | split: '|' %}
+      {% for item in items %}
+        <span class="marquee__item">{{ item | strip }}</span>
+        <span class="marquee__dot" aria-hidden="true">&#10022;</span>
+      {% endfor %}
+      {% for item in items %}
+        <span class="marquee__item">{{ item | strip }}</span>
+        <span class="marquee__dot" aria-hidden="true">&#10022;</span>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquee Ticker",
+  "tag": "section",
+  "class": "section-marquee",
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        { "value": "gold", "label": "Gold on Cream" },
+        { "value": "cream", "label": "Cream on Charcoal" },
+        { "value": "terracotta", "label": "White on Terracotta" }
+      ],
+      "default": "gold"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Animation Speed (seconds)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "default": 35
+    },
+    {
+      "type": "text",
+      "id": "ticker_text",
+      "label": "Ticker Items (separate with |)",
+      "default": "Handcrafted in Bihar | 400-Year-Old Sujni Tradition | Free Shipping Over ₹1499 | Empowering Rural Artisans | DIY Ritual Kits Included | Premium Heritage Decor | Slow Fashion. Mindful Living"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Ticker"
+    }
+  ]
+}
+{% endschema %}

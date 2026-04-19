@@ -1,0 +1,24 @@
+<div class="page-default">
+  <section class="page-hero page-hero--compact section--cream" id="PageHero">
+    <div class="container page-hero__content animate-fade-up" style="padding-block: var(--space-16);">
+      <h1 class="page-hero__title">{{ page.title }}</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="page-default__body rte animate-fade-up">
+        {{ page.content }}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Default Page",
+  "tag": "section",
+  "class": "section-page-default",
+  "settings": [],
+  "presets": [{ "name": "Default Page" }]
+}
+{% endschema %}

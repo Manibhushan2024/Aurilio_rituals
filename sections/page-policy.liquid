@@ -1,0 +1,46 @@
+<div class="page-policy">
+
+  <!-- Hero -->
+  <section class="page-hero page-hero--compact section--cream" id="PolicyHero">
+    <div class="container page-hero__content animate-fade-up" style="padding-block: var(--space-12);">
+      <p class="section-eyebrow">Aurelia Rituals</p>
+      <h1 class="page-hero__title">{{ page.title }}</h1>
+      {% if page.published_at %}
+        <p class="policy-updated">Last updated: {{ page.published_at | date: '%B %d, %Y' }}</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Policy Content -->
+  <section class="section" id="PolicyContent">
+    <div class="container">
+      <div class="policy-body rte animate-fade-up">
+        {% if page.content != blank %}
+          {{ page.content }}
+        {% else %}
+          {{ section.settings.fallback_content }}
+        {% endif %}
+      </div>
+      <div class="policy-contact animate-fade-up">
+        <p>Questions about this policy? <a href="/pages/contact" class="policy-contact__link">Contact us</a> or WhatsApp <a href="https://wa.me/919334892585" class="policy-contact__link">+91 9334892585</a>.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Policy Page",
+  "tag": "section",
+  "class": "section-policy",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "fallback_content",
+      "label": "Fallback Content (shown if page has no content)"
+    }
+  ],
+  "presets": [{ "name": "Policy Page" }]
+}
+{% endschema %}

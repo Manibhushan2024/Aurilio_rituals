@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-contact",
+      "settings": {
+        "eyebrow": "We're Here",
+        "heading": "Get in Touch",
+        "subheading": "Questions about your order, wholesale enquiries, or just want to say hello — we'd love to hear from you.",
+        "info_heading": "Reach Us Directly",
+        "info_desc": "We reply within 24 hours on business days. WhatsApp is the fastest way to reach us.",
+        "form_heading": "Send Us a Message",
+        "success_message": "Thank you! We'll get back to you within 24 hours."
+      }
+    }
+  },
+  "order": ["main"]
+}
