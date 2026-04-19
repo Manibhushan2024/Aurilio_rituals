@@ -1,20 +1,21 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "product-main": {
       "type": "product-main",
       "settings": {
-        "show_artisan_note": true,
-        "show_social_share": true,
         "show_quantity": true,
-        "show_sku": false,
-        "show_tags": true,
-        "enable_sticky_atc": true
-      }
-    },
-    "product-details": {
-      "type": "product-details",
-      "settings": {
-        "heading": "What's Inside the Box"
+        "show_social_share": true,
+        "enable_sticky_atc": true,
+        "show_sku": false
       }
     },
     "recently-viewed": {
@@ -29,5 +30,8 @@
       }
     }
   },
-  "order": ["product-main","product-details","recently-viewed"]
+  "order": [
+    "product-main",
+    "recently-viewed"
+  ]
 }
