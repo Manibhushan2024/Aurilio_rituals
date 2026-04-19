@@ -19,7 +19,7 @@
         poster="{{ 'hero-banner.jpg' | asset_url }}"
         aria-hidden="true"
       >
-        <source src="{{ 'hero-video-loop.mp4' | asset_url }}" type="video/mp4">
+        <source src="{{ 'artisan-ritual.mp4' | asset_url }}" type="video/mp4">
       </video>
     {% elsif hero_image %}
       <img
@@ -274,11 +274,13 @@
   "presets": [
     {
       "name": "Hero Banner",
-      "eyebrow": "Premium Sujni Heritage",
-      "heading": "Stitch Your Calm.",
-      "subheading": "Mindful Sujni embroidery kits & heritage decor, crafted for modern spaces.",
-      "btn_primary_label": "Explore the Collections",
-      "btn_secondary_label": "Learn Our Story"
+      "settings": {
+        "eyebrow": "Premium Sujni Heritage",
+        "heading": "Stitch Your Calm.",
+        "subheading": "Mindful Sujni embroidery kits & heritage decor, crafted for modern spaces.",
+        "btn_primary_label": "Explore the Collections",
+        "btn_secondary_label": "Learn Our Story"
+      }
     }
   ]
 }

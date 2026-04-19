@@ -26,7 +26,7 @@
       <div class="corporate-why__text animate-fade-up">
         <p class="section-eyebrow">Why It Works</p>
         <h2 class="section-heading">{{ section.settings.why_heading | default: 'Creative Wellness Is the New Team Building' }}</h2>
-        <div class="rte">{{ section.settings.why_body | default: '<p>In a world of back-to-back meetings and screen fatigue, giving your team a hands-on, creative experience is one of the most powerful investments you can make. Embroidery requires focus, calms the nervous system, and produces something tangible — fostering pride, patience, and connection.</p><p>Aurilio Rituals corporate workshops offer a premium, guided Sujni embroidery experience that teams actually look forward to. Whether it\'s a team off-site, a client gifting initiative, or a wellness day — we make it beautiful.</p>' }}</div>
+        <div class="rte">{{ section.settings.why_body | default: "<p>In a world of back-to-back meetings and screen fatigue, giving your team a hands-on, creative experience is one of the most powerful investments you can make. Embroidery requires focus, calms the nervous system, and produces something tangible - fostering pride, patience, and connection.</p><p>Aurilio Rituals corporate workshops offer a premium, guided Sujni embroidery experience that teams actually look forward to. Whether it's a team off-site, a client gifting initiative, or a wellness day - we make it beautiful.</p>" }}</div>
       </div>
       <div class="corporate-why__media animate-fade-up" style="animation-delay:150ms;">
         {% if section.settings.why_image %}
@@ -75,12 +75,12 @@
     <div class="container corporate-form__inner">
       <div class="section-header animate-fade-up">
         <p class="section-eyebrow">Get a Custom Quote</p>
-        <h2 class="section-heading">{{ section.settings.form_heading | default: 'Let\'s Create Something Together' }}</h2>
-        <p class="section-subheading">{{ section.settings.form_subheading | default: 'Tell us about your team and we\'ll craft a personalised Sujni ritual experience for you.' }}</p>
+        <h2 class="section-heading">{{ section.settings.form_heading | default: "Let's Create Something Together" }}</h2>
+        <p class="section-subheading">{{ section.settings.form_subheading | default: "Tell us about your team and we'll craft a personalised Sujni ritual experience for you." }}</p>
       </div>
       <form class="contact-form corporate-form__form" action="/contact" method="post" id="CorporateContactForm">
         <input type="hidden" name="form_type" value="contact">
-        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="utf8" value="true">
         <div class="form-row">
           <div class="form-group">
             <label for="CorporateName" class="form-label">Your Name *</label>
@@ -100,9 +100,9 @@
             <label for="CorporateTeamSize" class="form-label">Team Size</label>
             <select id="CorporateTeamSize" name="contact[team_size]" class="form-input form-select">
               <option value="">Select team size</option>
-              <option value="5-15">5 – 15 people</option>
-              <option value="15-30">15 – 30 people</option>
-              <option value="30-50">30 – 50 people</option>
+              <option value="5-15">5 - 15 people</option>
+              <option value="15-30">15 - 30 people</option>
+              <option value="30-50">30 - 50 people</option>
               <option value="50+">50+ people</option>
             </select>
           </div>
@@ -136,39 +136,51 @@
   "tag": "section",
   "class": "section-corporate",
   "settings": [
-    { "type": "image_picker","id": "hero_image",     "label": "Hero Image"      },
-    { "type": "text",        "id": "heading",        "label": "Hero Heading",   "default": "Sujni Rituals for Offices & Events" },
-    { "type": "text",        "id": "subheading",     "label": "Hero Subheading","default": "Because the most productive teams are the ones who slow down together." },
-    { "type": "text",        "id": "hero_cta_label", "label": "Hero CTA",       "default": "Request a Quote" },
-    { "type": "header",      "content": "Why Section"  },
-    { "type": "image_picker","id": "why_image",      "label": "Why Image"       },
-    { "type": "text",        "id": "why_heading",    "label": "Heading",        "default": "Creative Wellness Is the New Team Building" },
-    { "type": "richtext",    "id": "why_body",       "label": "Body"            },
-    { "type": "header",      "content": "Boxes Section" },
-    { "type": "text",        "id": "boxes_heading",  "label": "Heading",        "default": "Choose Your Ritual Experience" },
-    { "type": "header",      "content": "Form Section"  },
-    { "type": "text",        "id": "form_heading",   "label": "Form Heading",   "default": "Let's Create Something Together" },
-    { "type": "text",        "id": "form_subheading","label": "Form Subheading" }
+    { "type": "image_picker", "id": "hero_image", "label": "Hero Image" },
+    { "type": "text", "id": "heading", "label": "Hero Heading", "default": "Sujni Rituals for Offices & Events" },
+    { "type": "text", "id": "subheading", "label": "Hero Subheading", "default": "Because the most productive teams are the ones who slow down together." },
+    { "type": "text", "id": "hero_cta_label", "label": "Hero CTA", "default": "Request a Quote" },
+    { "type": "header", "content": "Why Section" },
+    { "type": "image_picker", "id": "why_image", "label": "Why Image" },
+    { "type": "text", "id": "why_heading", "label": "Heading", "default": "Creative Wellness Is the New Team Building" },
+    { "type": "richtext", "id": "why_body", "label": "Body" },
+    { "type": "header", "content": "Boxes Section" },
+    { "type": "text", "id": "boxes_heading", "label": "Heading", "default": "Choose Your Ritual Experience" },
+    { "type": "header", "content": "Form Section" },
+    { "type": "text", "id": "form_heading", "label": "Form Heading", "default": "Let's Create Something Together" },
+    { "type": "text", "id": "form_subheading", "label": "Form Subheading" }
   ],
   "blocks": [
     {
       "type": "offering",
       "name": "Offering Box",
       "settings": [
-        { "type": "select","id": "icon",        "label": "Icon",  "options": [{"value":"desk","label":"Desk"},{"value":"gift","label":"Gift"},{"value":"ritual","label":"Ritual"}], "default": "gift" },
-        { "type": "text",  "id": "title",       "label": "Title", "default": "The Office Calm Kit" },
-        { "type": "textarea","id": "description","label": "Description","default": "A premium desk-sized ritual kit for focus, mindfulness, and a creative pause during the workday." },
-        { "type": "text",  "id": "price",       "label": "Starting Price", "default": "₹999 per person" }
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "desk", "label": "Desk" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "ritual", "label": "Ritual" }
+          ],
+          "default": "gift"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "The Office Calm Kit" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "A premium desk-sized ritual kit for focus, mindfulness, and a creative pause during the workday." },
+        { "type": "text", "id": "price", "label": "Starting Price", "default": "Rs.999 per person" }
       ]
     }
   ],
-  "presets": [{
-    "name": "Corporate & Workshops",
-    "blocks": [
-      { "type": "offering", "settings": { "icon": "desk",    "title": "The Office Calm Kit",         "description": "A quick desk-friendly ritual. Perfect for a mindful break from screen time. Includes a compact kit with hoop, thread, and tutorial access.", "price": "₹999 per person" } },
-      { "type": "offering", "settings": { "icon": "gift",    "title": "The Team Thank-You Box",      "description": "Premium branded gifting with a story. A beautiful Sujni ritual kit in a gift box — personalised with your brand or a custom message.", "price": "₹1499 per person" } },
-      { "type": "offering", "settings": { "icon": "ritual",  "title": "The Bridal Ritual Box",       "description": "For pre-wedding zen moments. A luxurious bridesmaid experience — each guest stitch their own keepsake together.", "price": "₹2499 per person" } }
-    ]
-  }]
+  "presets": [
+    {
+      "name": "Corporate & Workshops",
+      "blocks": [
+        { "type": "offering", "settings": { "icon": "desk", "title": "The Office Calm Kit", "description": "A quick desk-friendly ritual. Perfect for a mindful break from screen time. Includes a compact kit with hoop, thread, and tutorial access.", "price": "Rs.999 per person" } },
+        { "type": "offering", "settings": { "icon": "gift", "title": "The Team Thank-You Box", "description": "Premium branded gifting with a story. A beautiful Sujni ritual kit in a gift box - personalised with your brand or a custom message.", "price": "Rs.1499 per person" } },
+        { "type": "offering", "settings": { "icon": "ritual", "title": "The Bridal Ritual Box", "description": "For pre-wedding zen moments. A luxurious bridesmaid experience - each guest stitch their own keepsake together.", "price": "Rs.2499 per person" } }
+      ]
+    }
+  ]
 }
 {% endschema %}
