@@ -8,7 +8,7 @@
         "subheading": "Where a 400-year-old tradition meets the modern ritual of mindful making.",
         "founder_heading": "A Vision Born from Threads",
         "artisan_heading": "The Artisans Behind Every Stitch",
-        "artisan_subheading": "Each piece from Aurelia Rituals is touched by the hands of a skilled artisan — a woman who has devoted her life to mastering this ancient art.",
+        "artisan_subheading": "Each piece from Aurilio Rituals is touched by the hands of a skilled artisan — a woman who has devoted her life to mastering this ancient art.",
         "heritage_heading": "The Ancient Art of Sujni",
         "cta_heading": "Ready to Begin Your Ritual?",
         "cta_desc": "Explore our kits, choose your canvas, and start stitching your own story.",
@@ -21,7 +21,7 @@
       "blocks": {
         "artisan1": { "type": "artisan", "settings": { "name": "Sunita Devi",  "role": "Lead Sujni Artisan",   "bio": "25 years of mastery. Sunita leads our artisan collective, training younger women in this ancient stitch tradition." } },
         "artisan2": { "type": "artisan", "settings": { "name": "Meena Kumari", "role": "Thread & Colour Expert", "bio": "Meena selects every thread in our kits with a master eye — ensuring each palette sings with precision and warmth." } },
-        "artisan3": { "type": "artisan", "settings": { "name": "Rani Devi",    "role": "Pattern Designer",       "bio": "Rani translates her grandmother's motifs into the modern designs that make Aurelia Rituals so distinctive." } }
+        "artisan3": { "type": "artisan", "settings": { "name": "Rani Devi",    "role": "Pattern Designer",       "bio": "Rani translates her grandmother's motifs into the modern designs that make Aurilio Rituals so distinctive." } }
       }
     }
   },

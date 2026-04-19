@@ -1,4 +1,4 @@
-/* Aurelia Rituals — GSAP premium animations */
+/* Aurilio Rituals — GSAP premium animations */
 document.addEventListener('DOMContentLoaded', function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 

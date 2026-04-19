@@ -1,5 +1,5 @@
 /**
- * Aurelia Rituals — main.js
+ * Aurilio Rituals — main.js
  * Plain vanilla JS, no jQuery, no dependencies.
  * Handles: sticky header, mobile nav, cart drawer,
  *          search bar, gallery, qty selectors, animations,
@@ -327,6 +327,6 @@
   `;
   document.head.appendChild(style);
 
-  console.log('%c✨ Aurelia Rituals theme loaded', 'color:#C9A96E;font-weight:bold;font-size:14px;');
+  console.log('%c✨ Aurilio Rituals theme loaded', 'color:#C9A96E;font-weight:bold;font-size:14px;');
 
 })();
