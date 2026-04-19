@@ -19,7 +19,7 @@
     "font_body": "inter_n4",
     "font_size_base": 16,
     "logo_width": 160,
-    "announcement_text": "Free Shipping Over ₹1499 | Empowering Rural Artisans | Video Tutorials Included | Handcrafted in Bihar | Returns Within 7 Days",
+    "announcement_text": "Free Shipping Over Rs. 1499 | Artisan-Made with Care | Video Tutorials Included | Gift-Ready Packaging | Returns Within 7 Days",
     "announcement_bg": "#2C2C2C",
     "announcement_text_color": "#C9A96E",
     "sticky_header": true,
@@ -33,7 +33,7 @@
     "social_youtube_url": "https://youtube.com/@aureliarituals",
     "cart_type": "drawer",
     "show_artisan_note": true,
-    "artisan_note_text": "With every purchase, you support a skilled rural artisan and her family."
+    "artisan_note_text": "With every purchase, you support a skilled artisan collective."
   },
   "presets": {}
 }
