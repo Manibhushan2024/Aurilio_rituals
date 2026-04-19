@@ -1172,6 +1172,7 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 .site-footer__brand-name { font-family: var(--font-heading); font-size: var(--text-2xl); color: var(--cream); margin-bottom: var(--space-4); }
 .site-footer__tagline { font-family: var(--font-heading); font-size: var(--text-lg); font-style: italic; color: var(--gold); margin-bottom: var(--space-4); }
 .site-footer__desc { font-size: var(--text-sm); color: rgba(250,246,240,.6); line-height: 1.7; margin-bottom: var(--space-6); }
+.site-footer__meta { font-size: var(--text-xs); color: rgba(250,246,240,.55); letter-spacing: 0.04em; margin-bottom: var(--space-6); }
 
 .site-footer__social { display: flex; gap: var(--space-3); }
 .social-link {

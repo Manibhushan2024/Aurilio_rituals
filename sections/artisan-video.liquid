@@ -8,7 +8,7 @@
       {% endif %}
       <h2 class="section-heading">{{ section.settings.heading | default: 'Watch the Ritual Come Alive' }}</h2>
       <div class="rte artisan-video-section__body">
-        {{ section.settings.body | default: '<p>Every stitch is an act of intention. Watch how our artisans in Bihar bring centuries of Sujni tradition into a single, mindful canvas — and discover how you can be part of this living art form.</p>' }}
+        {{ section.settings.body | default: '<p>Every stitch is an act of intention. Watch how skilled artisans bring centuries of Sujni tradition into a single, mindful canvas, and discover how you can be part of this living art form.</p>' }}
       </div>
       {% if section.settings.cta_label != blank %}
         <a href="{{ section.settings.cta_url | default: '/collections/ritual-kits' }}" class="btn btn--primary" id="ArtisanVideoCTA">
@@ -114,7 +114,7 @@
     { "type": "text",        "id": "video_file",    "label": "Video File URL (MP4)" },
     { "type": "image_picker","id": "video_poster",  "label": "Video Poster Image" },
     { "type": "checkbox",    "id": "autoplay",      "label": "Autoplay (muted, looping)", "default": false },
-    { "type": "text",        "id": "caption",       "label": "Caption below video", "default": "Filmed at our artisan collective in Madhubani, Bihar." },
+    { "type": "text",        "id": "caption",       "label": "Caption below video", "default": "Filmed with our artisan collective." },
     { "type": "header",      "content": "Layout" },
     {
       "type": "select",

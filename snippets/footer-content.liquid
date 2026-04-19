@@ -34,6 +34,7 @@
         {% endif %}
         <p class="site-footer__tagline">{{ settings.footer_tagline }}</p>
         <p class="site-footer__desc">Premium Sujni embroidery kits &amp; heritage home decor. Mindfully crafted by skilled Indian artisans.</p>
+        <p class="site-footer__meta">Udyam Registration: UDYAM-BR-23-0108680</p>
 
         <!-- Social Links -->
         <div class="site-footer__social" aria-label="Social media links">
@@ -63,11 +64,11 @@
       <div class="site-footer__col">
         <h3 class="site-footer__heading">Shop</h3>
         <ul class="site-footer__links" role="list">
-          <li><a href="/collections/heritage-collection">The Heritage Collection</a></li>
-          <li><a href="/collections/ritual-kits">The Ritual Kits</a></li>
-          <li><a href="/collections/bundles-gifting">Bundles &amp; Gifting</a></li>
-          <li><a href="/collections/new-arrivals">New Arrivals</a></li>
-          <li><a href="/collections/best-sellers">Best Sellers</a></li>
+          <li><a href="{{ routes.root_url }}#CollectionCards">The Heritage Collection</a></li>
+          <li><a href="{{ routes.root_url }}#CollectionCards">The Ritual Kits</a></li>
+          <li><a href="{{ routes.root_url }}#GiftingImpact">Bundles &amp; Gifting</a></li>
+          <li><a href="{{ routes.root_url }}#BestSellers">New Arrivals</a></li>
+          <li><a href="{{ routes.root_url }}#BestSellers">Best Sellers</a></li>
         </ul>
       </div>
 
@@ -75,9 +76,9 @@
       <div class="site-footer__col">
         <h3 class="site-footer__heading">Learn</h3>
         <ul class="site-footer__links" role="list">
-          <li><a href="/pages/our-story">Our Story</a></li>
-          <li><a href="/pages/corporate-workshops">Corporate &amp; Workshops</a></li>
-          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="{{ routes.root_url }}#StoryPreview">Our Story</a></li>
+          <li><a href="/pages/contact">Corporate &amp; Workshops</a></li>
+          <li><a href="/pages/contact">FAQ</a></li>
           <li><a href="/pages/contact">Contact Us</a></li>
         </ul>
       </div>
